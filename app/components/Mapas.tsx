@@ -5,7 +5,7 @@ function Mapas() {
   return (
     <div className="w-full p-12 h-fit bg-background">
         <Title dark>El consumo de <span className='text-coffee-brown'>café</span> y <span className='text-yerba-green'>mate</span> en LATAM</Title>
-        <div className="w-full p-12 flex items-start justify-center gap-2">
+        <div className="w-full p-12 flex items-start justify-center gap-2 pt-12">
             <div className="w-[50%]">
             <FlourishChart
                 visualisationId="29147316"

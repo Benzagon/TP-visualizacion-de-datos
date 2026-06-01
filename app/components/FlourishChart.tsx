@@ -15,6 +15,7 @@ interface FlourishChartProps {
   height?: number | string;
   /** Extra className on the wrapper */
   className?: string;
+  dark?: boolean;
 }
 
 // IDs of already-injected Flourish embed scripts (module-level, survives re-renders)
@@ -58,6 +59,7 @@ export default function FlourishChart({
   title,
   description,
   height = 500,
+  dark = false,
   className = "",
 }: FlourishChartProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -81,20 +83,20 @@ export default function FlourishChart({
 
   return (
     <figure
-      className={`group relative w-full overflow-hidden rounded-md border border-[#C8A97E]/40 font-jakarta ${className}`}
+      className={`group relative w-full overflow-hidden rounded-md font-jakarta ${className}`}
     >
       {/* Warm top accent line */}
 
       {/* Header */}
       {(title || description) && (
-        <div className="relative z-10 px-6 pt-5 pb-4 text-foreground">
+        <div className={`relative z-10 pb-4 ${dark? "text-dark-foreground" : "text-foreground"}`}>
           {title && (
-            <h3 className="text-lg font-semibold tracking-wide text-base leading-snug">
+            <h3 className="text-2xl font-semibold tracking-wide leading-snug">
               {title}
             </h3>
           )}
           {description && (
-            <p className="mt-1 text-xs leading-relaxed">
+            <p className="mt-1 text-small leading-relaxed">
               {description}
             </p>
           )}
@@ -103,7 +105,7 @@ export default function FlourishChart({
 
       {/* Chart area */}
       <div
-        className="relative w-full bg-background"
+        className={`relative w-full ${dark ? "bg-dark-background" : "bg-background"}`}
         style={{ minHeight: typeof height === "number" ? `${height}px` : height }}
       >
         {/* Loading shimmer */}
