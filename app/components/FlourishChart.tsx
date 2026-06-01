@@ -66,7 +66,7 @@ export default function FlourishChart({
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(false);
 
-  useEffect(() => {
+    useEffect(() => {
     setLoaded(false);
     setError(false);
 
