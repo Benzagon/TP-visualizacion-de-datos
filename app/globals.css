@@ -12,8 +12,8 @@
   --color-foreground: var(--foreground);
   --color-yerba-green: var(--yerba);
   --color-coffee-brown: var(--coffee);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-plus-jakarta-sans);
+  --font-jakarta: var(--font-plus-jakarta-sans);
 }
 
 @media (prefers-color-scheme: dark) {
