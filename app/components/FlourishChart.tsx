@@ -81,21 +81,20 @@ export default function FlourishChart({
 
   return (
     <figure
-      className={`group relative w-full overflow-hidden rounded-2xl ${className}`}
+      className={`group relative w-full overflow-hidden rounded-md border border-[#C8A97E]/40 font-jakarta ${className}`}
     >
       {/* Warm top accent line */}
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#C8A97E]/60 to-transparent z-10" />
 
       {/* Header */}
       {(title || description) && (
-        <div className="relative z-10 px-6 pt-5 pb-4 bg-[#1A0A00]/80 backdrop-blur-sm border-b border-[#C8A97E]/10">
+        <div className="relative z-10 px-6 pt-5 pb-4 text-foreground">
           {title && (
-            <h3 className="text-[#F5ECD7] font-semibold tracking-wide text-base leading-snug">
+            <h3 className="text-lg font-semibold tracking-wide text-base leading-snug">
               {title}
             </h3>
           )}
           {description && (
-            <p className="mt-1 text-[#C8A97E]/70 text-xs leading-relaxed">
+            <p className="mt-1 text-xs leading-relaxed">
               {description}
             </p>
           )}
@@ -104,7 +103,7 @@ export default function FlourishChart({
 
       {/* Chart area */}
       <div
-        className="relative w-full bg-[#0D0500]"
+        className="relative w-full bg-background"
         style={{ minHeight: typeof height === "number" ? `${height}px` : height }}
       >
         {/* Loading shimmer */}
