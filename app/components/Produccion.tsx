@@ -14,6 +14,7 @@ const Produccion = () => {
                   title="1999, algo de mucho mate..."
                   description="Producción argentina de yerba mate a través del tiempo"
                   className="w-20"
+                  height={800}
               />
           </div>
       </div>
