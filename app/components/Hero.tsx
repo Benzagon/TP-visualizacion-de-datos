@@ -32,6 +32,12 @@ export default function Hero() {
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/40" />
 
+      {/* Nombres */}
+      <div className="absolute flex flex-col z-10 items-start justify-start px-12 pt-12 gap-2">
+        <p className="font-jakarta font-semibold text-xl text-[#FFE6D0]">Franco Arrieta.</p>
+        <p className="font-jakarta font-semibold text-xl text-[#FFE6D0]">Agustín Basmagi.</p>
+        <p className="font-jakarta font-semibold text-xl text-[#FFE6D0]">Gonzalo Benzaquen.</p>
+      </div>
       {/* Content */}
       <div className="relative z-10 flex h-full flex-col items-center justify-center">
         <h1
