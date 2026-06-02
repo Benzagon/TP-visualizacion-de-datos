@@ -18,7 +18,16 @@ const Produccion = () => {
           </div>
       </div>
       <div className="w-full p-12 h-fit bg-background">
-          <Title>Brasil, principal productor de <span className='text-coffee-brown'>café</span></Title>
+          <Title>Brasil, líder en producción de <span className='text-coffee-brown'>café</span></Title>
+          <div className="w-full p-12 flex items-start justify-center gap-2 pt-12">
+            <FlourishChart
+                visualisationId="29154655"
+                type="hierarchy"
+                title="Principales productores de café de LATAM"
+                className="w-10"
+                width='80%'
+            />
+          </div>
           <div className="w-full p-12 flex items-start justify-center gap-2 pt-12">
               <FlourishChart
                   visualisationId="29154705"

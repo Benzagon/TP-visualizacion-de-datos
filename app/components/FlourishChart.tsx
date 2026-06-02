@@ -16,6 +16,7 @@ interface FlourishChartProps {
   /** Extra className on the wrapper */
   className?: string;
   dark?: boolean;
+  width?: string;
 }
 
 // IDs of already-injected Flourish embed scripts (module-level, survives re-renders)
@@ -58,8 +59,9 @@ export default function FlourishChart({
   type = "chart",
   title,
   description,
-  height = 500,
+  height = 1000,
   dark = false,
+  width = "100%",
   className = "",
 }: FlourishChartProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -105,8 +107,11 @@ export default function FlourishChart({
 
       {/* Chart area */}
       <div
-        className={`relative w-full ${dark ? "bg-dark-background" : "bg-background"}`}
-        style={{ minHeight: typeof height === "number" ? `${height}px` : height }}
+        className={`relative ${dark ? "bg-dark-background" : "bg-background"}`}
+        style={{
+          width: typeof width === "number" ? `${width}px` : (width ?? "100%"),
+          minHeight: typeof height === "number" ? `${height}px` : height,
+        }}
       >
         {/* Loading shimmer */}
         {!loaded && !error && (
@@ -139,18 +144,26 @@ export default function FlourishChart({
         {/* Flourish embed — exact markup Flourish recommends */}
         <div
           ref={containerRef}
-          className={`w-full transition-opacity duration-700 ${loaded ? "opacity-100" : "opacity-0"}`}
+          className={`transition-opacity duration-700 ${loaded ? "opacity-100" : "opacity-0"}`}
+          style={{
+            width: typeof width === "number" ? `${width}px` : (width ?? "100%"),
+            height: typeof height === "number" ? `${height}px` : height,
+          }}
         >
           <div
             className={`flourish-embed flourish-${type}`}
             data-src={`visualisation/${visualisationId}`}
+            style={{
+              width: typeof width === "number" ? `${width}px` : width,
+            }}
           >
             <noscript>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={thumbnailUrl}
-                width="100%"
+                width={width}
                 alt={title ?? `${type} visualization`}
+                height={height}
               />
             </noscript>
           </div>
