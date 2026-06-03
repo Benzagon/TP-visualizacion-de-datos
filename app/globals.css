@@ -1,28 +1,70 @@
 @import "tailwindcss";
 
 :root {
-  --background: #feedde;
-  --dark-background: #03120E;
-  --foreground: #100F0C;
-  --dark-foreground: #FFE6D0;
-  --coffee: rgb(111, 78, 55);
-  --yerba: rgb(107, 170, 117);
+  --background: #ffffff;
+  --surface: #f6f7f8;
+  --foreground: #111827;
+  --foreground-muted: #6b7280;
+  --accent: #1a5c4a;
+  --accent-brown: #6F4E37;
+  --border: #e5e7eb;
+  --hero-overlay: rgb(17 24 39 / 0.45);
+  --hero-foreground: #f9fafb;
+
+  /* Motion tokens */
+  --motion-duration-fast: 0.3s;
+  --motion-duration-base: 0.5s;
+  --motion-duration-slow: 0.8s;
+  --motion-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --motion-stagger-child: 0.08s;
+  --motion-stagger-section: 0.12s;
+  --motion-distance-y: 20px;
+  --motion-spring-stiffness: 260;
+  --motion-spring-damping: 24;
+
+  /* Heatmap intensity scale (5 levels) */
+  --heatmap-0: #f0f4f3;
+  --heatmap-1: color-mix(in srgb, var(--accent) 22%, white);
+  --heatmap-2: color-mix(in srgb, var(--accent) 45%, white);
+  --heatmap-3: color-mix(in srgb, var(--accent) 70%, white);
+  --heatmap-4: var(--accent);
 }
 
 @theme inline {
   --color-background: var(--background);
-  --color-dark-background: var(--dark-background);
+  --color-surface: var(--surface);
   --color-foreground: var(--foreground);
-  --color-dark-foreground: var(--dark-foreground);
-  --color-yerba-green: var(--yerba);
-  --color-coffee-brown: var(--coffee);
+  --color-muted: var(--foreground-muted);
+  --color-accent: var(--accent);
+  --color-accent-brown: var(--accent-brown);
+  --color-border: var(--border);
+  --color-hero-foreground: var(--hero-foreground);
+  --font-display: var(--font-geist-sans);
+  --font-body: var(--font-plus-jakarta-sans);
   --font-sans: var(--font-plus-jakarta-sans);
-  --font-jakarta: var(--font-plus-jakarta-sans);
 }
-
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), sans-serif;
+}
+
+@keyframes scroll-line {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(300%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

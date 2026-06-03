@@ -1,63 +1,76 @@
-import React from 'react'
-import Title from './Title'
-import FlourishChart from './FlourishChart'
+import React from "react";
+import Title from "./Title";
+import FlourishChart from "./FlourishChart";
+
 const Produccion = () => {
   return (
     <>
-      <div className="w-full p-12 h-fit bg-dark-background">
-          <Title dark>La era del <span className='text-yerba-green'>mate.</span></Title>
-          <div className="w-full p-12 flex items-start justify-center gap-2 pt-12">
-              <FlourishChart
-                  dark
-                  visualisationId="29147963"
-                  type="chart"
-                  title="1999, algo de mucho mate..."
-                  description="Producción argentina de yerba mate a través del tiempo"
-                  className="w-20"
-                  height={800}
-              />
-          </div>
-      </div>
-      <div className="w-full p-12 h-fit bg-background">
-          <Title>Brasil, líder en producción de <span className='text-coffee-brown'>café</span></Title>
-          <div className="w-full p-12 flex items-start justify-center gap-2 pt-12">
+      <section className="w-full bg-surface border-t border-border">
+        <div className="max-w-7xl mx-auto px-6 md:px-10 py-20 md:py-28">
+          <Title dark>
+            La era del <span className="text-accent">mate.</span>
+          </Title>
+          <div className="mt-16 md:mt-20">
             <FlourishChart
+              dark
+              visualisationId="29147963"
+              type="chart"
+              title="1999, algo de mucho mate..."
+              description="Producción argentina de yerba mate a través del tiempo"
+              height={700}
+            />
+          </div>
+        </div>
+      </section>
+
+      <section className="w-full bg-background border-t border-border">
+        <div className="max-w-7xl mx-auto px-6 md:px-10 py-20 md:py-28 space-y-20 md:space-y-28">
+          <div>
+            <Title>
+              Brasil, líder en producción de{" "}
+              <span className="text-accent-brown">café</span>
+            </Title>
+            <div className="mt-8 md:mt-8 max-w-5xl mx-auto">
+              <FlourishChart
                 visualisationId="29154655"
                 type="hierarchy"
                 title="Principales productores de café de LATAM"
-                className="w-10"
-                width='80%'
-                height={800}
-            />
+                width="88%"
+                className="text-center mt-0"
+                height={780}
+              />
+            </div>
           </div>
-        <Title>El crecimiento no para</Title>
-        <div className="w-full p-12 flex items-start justify-center gap-2 pt-12">
-            <FlourishChart
+
+          <div>
+            <Title>El crecimiento no para</Title>
+            <div className="mt-16 md:mt-20">
+              <FlourishChart
                 visualisationId="29154705"
                 type="chart"
                 title="2018, pico de producción"
                 description="Producción caficultora de Brasil a través del tiempo."
-                className="w-20"
-                height={800}
-            />
-        </div>
-        <div className='mt-8'>
-            <Title>3coracões lídera la producción</Title>
-            <div className="w-full p-12 flex items-start justify-center gap-2 pt-8">
-                <div className='w-[60%]'>
-                    <FlourishChart
-                        visualisationId="29188502"
-                        type="bubbles"
-                        title="Empresas de café más grandes de latam por market share."
-                        className="w-20 text-center"
-                        height={600}
-                    />
-                </div>
+                height={680}
+              />
             </div>
-        </div>
-      </div>
-    </>
-  )
-}
+          </div>
 
-export default Produccion
+          <div>
+            <Title>3coracões lídera la producción</Title>
+            <div className="mt-8 md:mt-8 max-w-5xl mx-auto">
+              <FlourishChart
+                visualisationId="29188502"
+                type="bubbles"
+                title="Empresas de café más grandes de latam por market share."
+                className="text-center"
+                height={600}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+};
+
+export default Produccion;

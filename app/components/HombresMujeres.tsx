@@ -1,23 +1,27 @@
-import React from 'react'
-import Title from './Title'
-import FlourishChart from './FlourishChart'
+import React from "react";
+import Title from "./Title";
+import FlourishChart from "./FlourishChart";
 
 const HombresMujeres = () => {
   return (
-    <div className="w-full p-12 h-fit bg-dark-background">
-          <Title dark>Los hombres toman más <span className='text-coffee-brown'>café</span> que las mujeres</Title>
-          <div className="w-full p-12 flex items-start justify-center gap-2 pt-12">
-              <FlourishChart
-                  dark
-                  visualisationId="29146983"
-                  type="chart"
-                  title="Los hombres toman más café que las mujeres"
-                  description="Consumo de café por dia por rango etario"
-                  className="w-20"
-              />
-          </div>
+    <section className="w-full bg-surface border-t border-border">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 py-20 md:py-28">
+        <Title dark>
+          Los hombres toman más <span className="text-accent">café</span> que las
+          mujeres
+        </Title>
+        <div className="mt-16 md:mt-20">
+          <FlourishChart
+            dark
+            visualisationId="29146983"
+            type="chart"
+            title="Los hombres toman más café que las mujeres"
+            description="Consumo de café por dia por rango etario"
+          />
+        </div>
       </div>
-  )
-}
+    </section>
+  );
+};
 
-export default HombresMujeres
+export default HombresMujeres;

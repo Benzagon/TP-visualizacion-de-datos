@@ -1,6 +1,10 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { useReducedMotion } from "../hooks/useReducedMotion";
+import { useMotionTokens } from "../hooks/useMotionTokens";
+import { easeOutTransition, hoverLift } from "../lib/motion";
 
 interface FlourishChartProps {
   /** Flourish visualisation ID, e.g. "29147316" */
@@ -67,8 +71,10 @@ export default function FlourishChart({
   const containerRef = useRef<HTMLDivElement>(null);
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(false);
+  const reduced = useReducedMotion();
+  const tokens = useMotionTokens();
 
-    useEffect(() => {
+  useEffect(() => {
     setLoaded(false);
     setError(false);
 
@@ -84,67 +90,93 @@ export default function FlourishChart({
   const thumbnailUrl = `https://public.flourish.studio/visualisation/${visualisationId}/thumbnail`;
 
   return (
-    <figure
-      className={`group relative w-full overflow-hidden rounded-md font-jakarta ${className}`}
+    <motion.figure
+      className={`relative w-full overflow-hidden font-body ${className}`}
+      initial={reduced ? false : { opacity: 0, y: tokens.distanceY * 0.5 }}
+      whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-5% 0px" }}
+      transition={easeOutTransition(tokens, "base")}
+      whileHover={reduced ? undefined : { y: -2 }}
     >
-      {/* Warm top accent line */}
-
-      {/* Header */}
       {(title || description) && (
-        <div className={`relative z-10 pb-4 ${dark? "text-dark-foreground" : "text-foreground"}`}>
+        <motion.div
+          className={`relative z-10 pb-6 text-foreground ${dark ? "" : ""}`}
+          initial={reduced ? false : { opacity: 0 }}
+          whileInView={reduced ? undefined : { opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{
+            ...easeOutTransition(tokens, "fast"),
+            delay: reduced ? 0 : 0.05,
+          }}
+        >
           {title && (
-            <h3 className="text-2xl font-semibold tracking-wide leading-snug">
+            <h3 className="font-display text-xl md:text-2xl font-medium tracking-tight leading-snug">
               {title}
             </h3>
           )}
           {description && (
-            <p className="mt-1 text-small leading-relaxed">
+            <p className="mt-2 text-sm text-muted leading-relaxed max-w-2xl">
               {description}
             </p>
           )}
-        </div>
+        </motion.div>
       )}
 
-      {/* Chart area */}
-      <div
-        className={`relative ${dark ? "bg-dark-background" : "bg-background"}`}
+      <motion.div
+        className={`relative ${dark ? "bg-surface" : "bg-background"} flex items-center justify-end`}
         style={{
           width: typeof width === "number" ? `${width}px` : (width ?? "100%"),
           minHeight: typeof height === "number" ? `${height}px` : height,
         }}
+        initial={reduced ? false : { opacity: 0, scaleY: 0.98 }}
+        whileInView={reduced ? undefined : { opacity: 1, scaleY: 1 }}
+        viewport={{ once: true }}
+        transition={{
+          ...easeOutTransition(tokens, "slow"),
+          delay: reduced ? 0 : 0.1,
+        }}
+        whileHover={reduced ? undefined : hoverLift}
       >
-        {/* Loading shimmer */}
         {!loaded && !error && (
-          <div className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-3 pointer-events-none">
-            <div className="relative w-10 h-10">
-              {[0, 1, 2].map((i) => (
-                <span
-                  key={i}
-                  className="absolute inset-0 rounded-full border border-[#C8A97E]/30 animate-ping"
-                  style={{ animationDelay: `${i * 0.4}s`, animationDuration: "1.6s" }}
-                />
-              ))}
-              <span className="absolute inset-2 rounded-full bg-[#C8A97E]/10" />
-            </div>
-            <p className="text-[#C8A97E]/50 text-xs tracking-widest uppercase">
-              Brewing chart…
+          <div className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-4 pointer-events-none">
+            <motion.div
+              className="h-8 w-8 rounded-full border-2 border-border border-t-accent"
+              animate={reduced ? undefined : { rotate: 360 }}
+              transition={
+                reduced
+                  ? undefined
+                  : {
+                      duration: tokens.durationSlow,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }
+              }
+              aria-hidden
+            />
+            <p className="font-body text-xs tracking-widest uppercase text-muted">
+              Cargando visualización…
             </p>
           </div>
         )}
 
-        {/* Error state */}
         {error && (
           <div className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-2 px-8 text-center">
-            <span className="text-2xl">☕</span>
-            <p className="text-[#C8A97E]/60 text-sm">Could not load the visualisation.</p>
-            <p className="text-[#C8A97E]/30 text-xs">{visualisationId}</p>
+            <p className="font-body text-sm text-muted">
+              No se pudo cargar la visualización.
+            </p>
+            <p className="font-body text-xs text-muted/70">{visualisationId}</p>
           </div>
         )}
 
-        {/* Flourish embed — exact markup Flourish recommends */}
-        <div
+        <motion.div
           ref={containerRef}
-          className={`transition-opacity duration-700 ${loaded ? "opacity-100" : "opacity-0"}`}
+          initial={false}
+          animate={
+            loaded
+              ? { opacity: 1, scale: 1 }
+              : { opacity: 0, scale: reduced ? 1 : 0.99 }
+          }
+          transition={easeOutTransition(tokens, "base")}
           style={{
             width: typeof width === "number" ? `${width}px` : (width ?? "100%"),
             height: typeof height === "number" ? `${height}px` : height,
@@ -167,8 +199,8 @@ export default function FlourishChart({
               />
             </noscript>
           </div>
-        </div>
-      </div>
-    </figure>
+        </motion.div>
+      </motion.div>
+    </motion.figure>
   );
 }
