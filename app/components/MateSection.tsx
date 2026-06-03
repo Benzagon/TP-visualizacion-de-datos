@@ -109,7 +109,7 @@ function EditorialBlock({
   return (
     <div>
       <motion.p
-        className="font-body text-xs tracking-[0.35em] uppercase text-muted"
+        className="font-body text-xs tracking-[0.35em] uppercase text-hero-foreground/60"
         initial={hidden}
         whileInView={visible}
         transition={{ ...REVEAL, delay: 0 }}
@@ -138,7 +138,7 @@ function EditorialBlock({
       />
 
       <motion.p
-        className="font-body text-lg font-normal leading-relaxed max-w-sm text-muted"
+        className="font-body text-lg font-normal leading-relaxed max-w-sm text-hero-foreground/60"
         initial={hidden}
         whileInView={visible}
         transition={{ ...REVEAL, delay: reduced ? 0 : 0.25 }}
@@ -234,13 +234,13 @@ export default function MateSection() {
           />
 
           <div
-            className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-foreground to-transparent z-20"
+            className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#29493D] to-transparent z-20"
             aria-hidden
           />
         </motion.div>
       </div>
 
-      <div className="w-1/2 bg-foreground">
+      <div className="w-1/2 bg-[#29493D]">
         {SECTIONS.map((section, index) => (
           <div
             key={section.num}
