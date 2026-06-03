@@ -12,7 +12,7 @@ function Mapas() {
                 type="map"
                 title="Guyana, consumidores de café"
                 description="Consumo de cafe per capita (en kg)"
-                className="w-20"
+                className="w-20 text-center"
             />
             </div>
             <div className="w-[50%]">
@@ -21,7 +21,7 @@ function Mapas() {
                 type="map"
                 title="Argentina, adicta al mate"
                 description="Consumo de mate per capita (en kg)"
-                className="w-20"
+                className="w-20 text-center"
             />
             </div>
         </div>

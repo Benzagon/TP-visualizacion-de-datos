@@ -31,16 +31,30 @@ const Produccion = () => {
             />
           </div>
         <Title>El crecimiento no para</Title>
-          <div className="w-full p-12 flex items-start justify-center gap-2 pt-12">
-              <FlourishChart
-                  visualisationId="29154705"
-                  type="chart"
-                  title="2018, pico de producción"
-                  description="Producción caficultora de Brasil a través del tiempo."
-                  className="w-20"
-                  height={800}
-              />
-          </div>
+        <div className="w-full p-12 flex items-start justify-center gap-2 pt-12">
+            <FlourishChart
+                visualisationId="29154705"
+                type="chart"
+                title="2018, pico de producción"
+                description="Producción caficultora de Brasil a través del tiempo."
+                className="w-20"
+                height={800}
+            />
+        </div>
+        <div className='mt-8'>
+            <Title>3coracões lídera la producción</Title>
+            <div className="w-full p-12 flex items-start justify-center gap-2 pt-8">
+                <div className='w-[60%]'>
+                    <FlourishChart
+                        visualisationId="29188502"
+                        type="bubbles"
+                        title="Empresas de café más grandes de latam por market share."
+                        className="w-20 text-center"
+                        height={600}
+                    />
+                </div>
+            </div>
+        </div>
       </div>
     </>
   )
