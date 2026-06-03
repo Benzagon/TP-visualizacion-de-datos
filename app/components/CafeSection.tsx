@@ -9,36 +9,37 @@ const VIEWPORT = { once: true, margin: "-15%" } as const;
 const EASE = [0.25, 0.1, 0.25, 1] as const;
 const REVEAL = { duration: 0.9, ease: EASE };
 const ARROW_EASE = [0.25, 0.1, 0.25, 1] as const;
-const ORIGIN_X = 91;
+const ORIGIN_X = 9;
+const PANEL_BG = "#3D2B1F";
 
 const SECTIONS = [
   {
     num: "01",
-    title: "La Yerba",
-    body: "La yerba mate son las hojas secas y molidas del árbol Ilex paraguariensis, originario de las selvas subtropicales de Argentina, Brasil y Paraguay. Rica en cafeína, teobromina y antioxidantes, fue utilizada durante siglos por el pueblo guaraní como bebida sagrada y medicina natural.",
-    arrow: { x: 48, y: 48 },
+    title: "El Grano",
+    body: "Todo comienza con el grano de café: la semilla tostada del fruto del cafeto. Durante el tostado, cientos de compuestos aromáticos se desarrollan en su interior, dando origen a notas que pueden recordar al chocolate, los frutos secos, las flores o las frutas maduras. Aunque parece pequeño, cada grano concentra el potencial de toda la taza.",
+    arrow: { x: 65, y: 88 },
   },
   {
     num: "02",
-    title: "La Bombilla",
-    body: "La bombilla es el sorbete metálico con filtro que permite beber el mate sin tragar las hojas. Su extremo inferior —plano o en forma de resorte— retiene la yerba mientras deja pasar el líquido. Las mejores son de alpaca, plata o acero inoxidable, y mejoran con el uso.",
-    arrow: { x: 57, y: 20 },
+    title: "La Molienda",
+    body: "Una vez molido, el café libera aromas que permanecían atrapados en el interior del grano. El tamaño de la molienda determina cómo interactuará con el agua: demasiado fina produce una extracción intensa; demasiado gruesa, una bebida más ligera. Por eso, el café alcanza su máxima expresión cuando se muele justo antes de prepararlo.",
+    arrow: { x: 30, y: 50 },
   },
   {
     num: "03",
-    title: "El Mate",
-    body: "El mate es el recipiente que da nombre al ritual: un calabacín seco o madera tallada que contiene la yerba. Antes del primer uso se lo cura con yerba húmeda para cerrar sus poros. Con el tiempo, cada mate absorbe los aceites de la yerba y desarrolla un sabor propio e irreproducible.",
-    arrow: { x: 49, y: 72 },
+    title: "La Extracción",
+    body: "El agua caliente atraviesa el café molido y disuelve sus compuestos solubles: aceites, azúcares, ácidos y aromas. Este proceso, conocido como extracción, transforma partículas sólidas en una bebida compleja y equilibrada. Pequeñas variaciones de tiempo, temperatura o molienda pueden cambiar por completo el resultado final.",
+    arrow:  { x: 30, y: 50 },
   },
   {
     num: "04",
-    title: "El Agua",
-    body: "El agua es el elemento más delicado del mate. Debe estar entre 70 y 80 °C (nunca hirviendo) porque el agua a 100 °C quema la yerba y la vuelve amarga. Un buen cebador vierte poca cantidad cada vez y repite el cebado con paciencia, respetando los tiempos de cada mate.",
-    arrow: { x: 50, y: 50 },
+    title: "La Taza",
+    body: "La taza es el destino final del recorrido. En ella convergen el origen del grano, el perfil de tostado, la molienda y la técnica de preparación. La crema y el arte latte que coronan la superficie son la última huella visible de un proceso que comenzó mucho antes, en una plantación de café.",
+    arrow: { x: 60, y: 10 },
   },
 ] as const;
 
-function MateImagePointer({
+function CafeImagePointer({
   target,
   reduced,
   label,
@@ -64,7 +65,7 @@ function MateImagePointer({
         stroke="var(--hero-foreground)"
         strokeWidth={0.35}
         strokeLinecap="round"
-        markerEnd="url(#mate-arrowhead)"
+        markerEnd="url(#cafe-arrowhead)"
         initial={false}
         animate={{
           x1: ORIGIN_X,
@@ -77,7 +78,7 @@ function MateImagePointer({
 
       <motion.circle
         r={0.8}
-        fill="var(--accent)"
+        fill="var(--accent-brown)"
         stroke="var(--hero-foreground)"
         strokeWidth={0.25}
         initial={false}
@@ -171,7 +172,7 @@ function getActiveSectionIndex(
   return activeIndex;
 }
 
-export default function MateSection() {
+export default function CafeSection() {
   const reduced = useReducedMotion();
   const [activeIndex, setActiveIndex] = useState(0);
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -210,43 +211,14 @@ export default function MateSection() {
 
   return (
     <section className="flex flex-row w-full">
-      <div className="w-1/2 sticky top-0 h-screen shrink-0 self-start overflow-hidden will-change-transform">
-        <motion.div
-          className="relative w-full h-full"
-          initial={reduced ? { scale: 1 } : { scale: 1.05 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: reduced ? 0 : 1.8, ease: "easeOut" }}
-        >
-          <Image
-            src="/mate.jpg"
-            alt="Mate tradicional"
-            fill
-            className="object-cover object-center"
-            priority
-            sizes="50vw"
-          />
-
-          <MateImagePointer
-            target={active.arrow}
-            reduced={reduced}
-            label={pointerLabel}
-          />
-
-          <div
-            className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#29493D] to-transparent z-20"
-            aria-hidden
-          />
-        </motion.div>
-      </div>
-
-      <div className="w-1/2 bg-[#29493D]">
+      <div className="w-1/2 bg-[#3D2B1F]">
         {SECTIONS.map((section, index) => (
           <div
             key={section.num}
             ref={(el) => {
               sectionRefs.current[index] = el;
             }}
-            className={`min-h-screen flex items-center px-16 py-24 ${
+            className={`min-h-screen flex items-center pl-36 pr-8 py-24 ${
               index === SECTIONS.length - 1 ? "pb-48" : ""
             }`}
           >
@@ -258,6 +230,37 @@ export default function MateSection() {
             />
           </div>
         ))}
+      </div>
+
+      <div className="w-1/2 sticky top-0 h-screen shrink-0 self-start overflow-hidden will-change-transform">
+        <motion.div
+          className="relative w-full h-full"
+          initial={reduced ? { scale: 1 } : { scale: 1.05 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: reduced ? 0 : 1.8, ease: "easeOut" }}
+        >
+          <Image
+            src="/cafe.jpg"
+            alt="Preparación de café en portafiltros"
+            fill
+            className="object-cover object-center"
+            sizes="50vw"
+          />
+
+          <CafeImagePointer
+            target={active.arrow}
+            reduced={reduced}
+            label={pointerLabel}
+          />
+
+          <div
+            className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r z-20"
+            style={{
+              backgroundImage: `linear-gradient(to right, ${PANEL_BG}, transparent)`,
+            }}
+            aria-hidden
+          />
+        </motion.div>
       </div>
     </section>
   );
