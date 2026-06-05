@@ -119,15 +119,17 @@ export default function Hero() {
         </div>
 
         <motion.div
-          className="absolute bottom-10 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-3"
+          className="absolute left-1/2 z-10 w-full h-full flex bottom-0 -translate-x-1/2 flex-col items-center gap-3"
           style={{ opacity: scrollHintOpacity }}
           aria-hidden={reduced}
         >
-          <span className="font-body text-[10px] uppercase tracking-[0.25em] text-muted">
-            Scroll
-          </span>
-          <div className="h-10 w-px overflow-hidden bg-foreground/15">
-            <div className="h-1/2 w-full bg-accent animate-[scroll-line_1.8s_ease-in-out_infinite]" />
+          <div className="w-full h-full flex flex-col gap-2 items-center justify-center">
+            <span className="font-body text-[10px] uppercase tracking-[0.25em] text-muted">
+              Scroll
+            </span>
+            <div className="h-10 w-px overflow-hidden bg-foreground/15">
+              <div className="h-1/2 w-full bg-accent animate-[scroll-line_1.8s_ease-in-out_infinite]" />
+            </div>
           </div>
         </motion.div>
       </div>
