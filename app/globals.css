@@ -10,6 +10,9 @@
   --border: #e5e7eb;
   --hero-overlay: rgb(17 24 39 / 0.45);
   --hero-foreground: #f9fafb;
+  --hero-mate-green: #4e8b5f;
+  --hero-split-green: #29493d;
+  --hero-split-brown: #3d2b1f;
 
   /* Motion tokens */
   --motion-duration-fast: 0.3s;

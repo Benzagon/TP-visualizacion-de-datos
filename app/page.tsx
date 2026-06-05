@@ -11,9 +11,7 @@ import Produccion from "./components/Produccion";
 export default function Page() {
   return (
     <>
-      <PageStagger>
-        <Hero />
-      </PageStagger>
+      <Hero />
       <MateSection />
       <CafeSection />
       <PageStagger>
