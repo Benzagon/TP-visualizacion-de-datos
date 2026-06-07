@@ -96,7 +96,6 @@ export default function FlourishChart({
       whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-5% 0px" }}
       transition={easeOutTransition(tokens, "base")}
-      whileHover={reduced ? undefined : { y: -2 }}
     >
       {(title || description) && (
         <motion.div
@@ -135,7 +134,6 @@ export default function FlourishChart({
           ...easeOutTransition(tokens, "slow"),
           delay: reduced ? 0 : 0.1,
         }}
-        whileHover={reduced ? undefined : hoverLift}
       >
         {!loaded && !error && (
           <div className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-4 pointer-events-none">

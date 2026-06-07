@@ -24,13 +24,22 @@ function lerpRange(
   return outMin + t * (outMax - outMin);
 }
 
+/** Intro title fades in after the first scroll gesture. */
+const INTRO_FADE_IN: [number, number] = [0.06, 0.2];
+
+/** Scroll window for crossfading intro → prompt title (ends before selection unlock). */
+const TITLE_CROSSFADE: [number, number] = [0.47, 0.6];
+
 type HeroScrollValues = {
   scrollYProgress: MotionValue<number>;
   /** Alias for scrollYProgress — consumed by the scroll-audio hook in Hero. */
   scrollProgress: MotionValue<number>;
   circleClipPath: MotionValue<string>;
-  titleOpacity: MotionValue<number>;
-  titleY: MotionValue<number>;
+  imageScale: MotionValue<number>;
+  introTitleOpacity: MotionValue<number>;
+  introTitleY: MotionValue<number>;
+  promptTitleOpacity: MotionValue<number>;
+  promptTitleY: MotionValue<number>;
   authorsOpacity: MotionValue<number>;
   scrollHintOpacity: MotionValue<number>;
 };
@@ -51,19 +60,39 @@ export function useHeroScroll(
 
   const circleClipPath = useMotionTemplate`circle(${circleRadius}% at 50% 50%)`;
 
-  const titleOpacity = useTransform(scrollYProgress, (progress) => {
+  const imageScale = useTransform(scrollYProgress, (progress) => {
     if (reduced) return 1;
-    return lerpRange(progress, [0.58, 0.72], [0, 1]);
+    return lerpRange(progress, TITLE_CROSSFADE, [1, 1.07]);
   });
 
-  const titleY = useTransform(scrollYProgress, (progress) => {
+  const introTitleOpacity = useTransform(scrollYProgress, (progress) => {
     if (reduced) return 0;
-    return lerpRange(progress, [0.58, 0.72], [24, 0]);
+    const fadeIn = lerpRange(progress, INTRO_FADE_IN, [0, 1]);
+    const fadeOut = lerpRange(progress, TITLE_CROSSFADE, [1, 0]);
+    return fadeIn * fadeOut;
+  });
+
+  const introTitleY = useTransform(scrollYProgress, (progress) => {
+    if (reduced) return 0;
+    if (progress < TITLE_CROSSFADE[0]) {
+      return lerpRange(progress, INTRO_FADE_IN, [24, 0]);
+    }
+    return lerpRange(progress, TITLE_CROSSFADE, [0, -28]);
+  });
+
+  const promptTitleOpacity = useTransform(scrollYProgress, (progress) => {
+    if (reduced) return 1;
+    return lerpRange(progress, TITLE_CROSSFADE, [0, 1]);
+  });
+
+  const promptTitleY = useTransform(scrollYProgress, (progress) => {
+    if (reduced) return 0;
+    return lerpRange(progress, TITLE_CROSSFADE, [28, 0]);
   });
 
   const authorsOpacity = useTransform(scrollYProgress, (progress) => {
     if (reduced) return 1;
-    return lerpRange(progress, [0.62, 0.76], [0, 1]);
+    return lerpRange(progress, [0.44, 0.58], [0, 1]);
   });
 
   const scrollHintOpacity = useTransform(scrollYProgress, (progress) => {
@@ -75,8 +104,11 @@ export function useHeroScroll(
     scrollYProgress,
     scrollProgress: scrollYProgress, // alias consumed by useScrollAudio
     circleClipPath,
-    titleOpacity,
-    titleY,
+    imageScale,
+    introTitleOpacity,
+    introTitleY,
+    promptTitleOpacity,
+    promptTitleY,
     authorsOpacity,
     scrollHintOpacity,
   };
