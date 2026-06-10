@@ -14,7 +14,7 @@ function Mapas() {
             <FlourishChart
               visualisationId="29147316"
               type="map"
-              title="Guyana, consumidores de café"
+              title="A más calor, más café"
               description="Consumo de cafe per capita (en kg)"
               height={840}
             />

@@ -42,7 +42,6 @@ export default function HomeContent() {
             {/* <ConsumoCalendario /> */}
             <Mapas />
             <Brindis />
-            <Footer />
           </PageStagger>
         </>
       )}

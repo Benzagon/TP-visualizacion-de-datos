@@ -9,8 +9,8 @@ const ProduccionCafe = () => {
         <div className="max-w-7xl mx-auto px-6 md:px-10 pt-20 pb-8">
           <div>
             <Title>
-              Brasil, líder en producción de{" "}
-              <span className="text-accent-brown">café</span>
+              Brasil, la tierra del{" "}
+              <span className="text-accent-brown">cafetero</span>
             </Title>
             <div className="mt-8 md:mt-8 max-w-5xl mx-auto">
               <FlourishChart
@@ -62,7 +62,7 @@ const ProduccionMate = () => {
         <div className="max-w-7xl mx-auto px-6 md:px-10 pt-20 pb-8">
           <div>
             <Title>
-              Argentina domina la producción de 
+              Nada más argentino que el
               <span className="text-accent"> mate</span>
             </Title>
             <div className="mt-8 md:mt-8 max-w-5xl mx-auto">
@@ -78,7 +78,7 @@ const ProduccionMate = () => {
           </div>
           <div className="max-w-7xl mx-auto px-6 md:px-10 py-20">
             <Title dark>
-              El crecimiento no para
+              El siglo del <span className="text-accent"> mate</span>
             </Title>
             <div className="mt-8">
               <FlourishChart

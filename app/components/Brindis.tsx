@@ -533,9 +533,10 @@ export default function Brindis() {
               y: saludYspring,
               scale: saludScale,
             }}
-            className="mt-10 select-none font-display text-5xl font-bold tracking-tight text-foreground drop-shadow-[0_2px_18px_rgba(17,24,39,0.18)] md:mt-14 md:text-6xl lg:text-7xl"
+            className="mt-10 select-none grid gap-4 text-center font-display text-5xl font-bold tracking-tight text-foreground drop-shadow-[0_2px_18px_rgba(17,24,39,0.18)] md:mt-14 md:text-6xl lg:text-7xl"
           >
             ¡Salud!
+            <span className="text-base font-medium tracking-normal">Visualizacion de datos - 2026</span>
           </motion.p>
         </motion.div>
       </div>

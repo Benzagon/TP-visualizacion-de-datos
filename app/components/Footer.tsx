@@ -11,7 +11,7 @@ function Footer() {
   const tokens = useMotionTokens();
 
   return (
-    <footer className="w-full border-t border-border bg-surface py-16 md:py-20 px-6">
+    <footer className="w-full border-t border-border bg-background py-16 md:py-20 px-6 mt-20">
       <ScrollReveal className="max-w-3xl mx-auto flex flex-col items-center gap-2 text-center">
         <motion.p
           className="font-display text-xl md:text-2xl font-semibold tracking-tight text-foreground"
