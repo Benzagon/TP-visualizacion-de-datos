@@ -38,7 +38,7 @@ const ProduccionCafe = () => {
           </div>
 
           <div className="mt-8">
-            <Title>3coracões lídera la producción</Title>
+            <Title>3coracões líder en la producción</Title>
             <div className="mt-8 md:mt-8 max-w-5xl mx-auto">
               <FlourishChart
                 visualisationId="29188502"
