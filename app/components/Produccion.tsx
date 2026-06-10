@@ -2,29 +2,11 @@ import React from "react";
 import Title from "./Title";
 import FlourishChart from "./FlourishChart";
 
-const Produccion = () => {
+const ProduccionCafe = () => {
   return (
     <>
-      <section className="w-full bg-surface border-t border-border">
-        <div className="max-w-7xl mx-auto px-6 md:px-10 py-20 md:py-28">
-          <Title dark>
-            La era del <span className="text-accent">mate.</span>
-          </Title>
-          <div className="mt-16 md:mt-20">
-            <FlourishChart
-              dark
-              visualisationId="29147963"
-              type="chart"
-              title="1999, algo de mucho mate..."
-              description="Producción argentina de yerba mate a través del tiempo"
-              height={700}
-            />
-          </div>
-        </div>
-      </section>
-
       <section className="w-full bg-background border-t border-border">
-        <div className="max-w-7xl mx-auto px-6 md:px-10 py-20 md:py-28 space-y-20 md:space-y-28">
+        <div className="max-w-7xl mx-auto px-6 md:px-10 py-20 md:py-28">
           <div>
             <Title>
               Brasil, líder en producción de{" "}
@@ -42,7 +24,7 @@ const Produccion = () => {
             </div>
           </div>
 
-          <div>
+          <div className="mt-8">
             <Title>El crecimiento no para</Title>
             <div className="mt-16 md:mt-20">
               <FlourishChart
@@ -55,7 +37,7 @@ const Produccion = () => {
             </div>
           </div>
 
-          <div>
+          <div className="mt-8">
             <Title>3coracões lídera la producción</Title>
             <div className="mt-8 md:mt-8 max-w-5xl mx-auto">
               <FlourishChart
@@ -73,4 +55,27 @@ const Produccion = () => {
   );
 };
 
-export default Produccion;
+const ProduccionMate = () => {
+  return (
+    <>
+      <section className="w-full bg-surface border-t border-border">
+        <div className="max-w-7xl mx-auto px-6 md:px-10 py-20">
+          <Title dark>
+            El crecimiento no para
+          </Title>
+          <div className="mt-8">
+            <FlourishChart
+              dark
+              visualisationId="29147963"
+              type="chart"
+              description="Producción argentina de yerba mate a través del tiempo"
+              height={700}
+            />
+          </div>
+        </div>
+      </section>
+    </>
+  );
+};
+
+export {ProduccionCafe, ProduccionMate};

@@ -5,11 +5,9 @@ import { useScrollGate } from "../hooks/useScrollGate";
 import Footer from "./Footer";
 import Hero, { type DrinkSelection } from "./Hero";
 import Mapas from "./Mapas";
-import MasToman from "./MasToman";
-import CafeSection from "./CafeSection";
-import MateSection from "./MateSection";
 import PageStagger from "./motion/PageStagger";
-import Produccion from "./Produccion";
+import CafePage from "./pages/CafePage";
+import MatePage from "./pages/MatePage";
 
 export default function HomeContent() {
   const [selection, setSelection] = useState<DrinkSelection>(null);
@@ -35,15 +33,13 @@ export default function HomeContent() {
       {unlocked && (
         <>
           <div ref={contentRef}>
-            {selection === "cafe" && <CafeSection />}
-            {selection === "mate" && <MateSection />}
+            {selection === "cafe" && <CafePage />}
+            {selection === "mate" && <MatePage />}
           </div>
 
           <PageStagger>
-            <Mapas />
-            <Produccion />
-            <MasToman />
             {/* <ConsumoCalendario /> */}
+            <Mapas />
             <Footer />
           </PageStagger>
         </>
