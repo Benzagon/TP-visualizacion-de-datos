@@ -6,7 +6,7 @@ const ProduccionCafe = () => {
   return (
     <>
       <section className="w-full bg-background border-t border-border">
-        <div className="max-w-7xl mx-auto px-6 md:px-10 py-20 md:py-28">
+        <div className="max-w-7xl mx-auto px-6 md:px-10 pt-20 pb-8">
           <div>
             <Title>
               Brasil, líder en producción de{" "}
@@ -59,7 +59,7 @@ const ProduccionMate = () => {
   return (
     <>
       <section className="w-full bg-background border-t border-border">
-        <div className="max-w-7xl mx-auto px-6 md:px-10 py-20 md:py-28">
+        <div className="max-w-7xl mx-auto px-6 md:px-10 pt-20 pb-8">
           <div>
             <Title>
               Argentina domina la producción de 

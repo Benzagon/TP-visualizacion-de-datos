@@ -3,8 +3,8 @@ import Title from "./Title";
 
 function Mapas() {
   return (
-    <section className="w-full bg-background border-t border-border">
-      <div className="max-w-7xl mx-auto px-6 md:px-10 py-20 md:py-28">
+    <section className="w-full bg-background">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 mb-8">
         <Title>
           El consumo de <span className="text-accent-brown">café</span> y{" "}
           <span className="text-accent">mate</span> en LATAM

@@ -8,6 +8,7 @@ import Mapas from "./Mapas";
 import PageStagger from "./motion/PageStagger";
 import CafePage from "./pages/CafePage";
 import MatePage from "./pages/MatePage";
+import Brindis from "./Brindis";
 
 export default function HomeContent() {
   const [selection, setSelection] = useState<DrinkSelection>(null);
@@ -39,6 +40,7 @@ export default function HomeContent() {
 
           <PageStagger>
             {/* <ConsumoCalendario /> */}
+            <Brindis />
             <Mapas />
             <Footer />
           </PageStagger>
