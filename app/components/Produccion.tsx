@@ -25,7 +25,7 @@ const ProduccionCafe = () => {
           </div>
 
           <div className="mt-8">
-            <Title>El crecimiento no para</Title>
+            <Title>Brasil no para de producir</Title>
             <div className="mt-16 md:mt-20">
               <FlourishChart
                 visualisationId="29154705"
