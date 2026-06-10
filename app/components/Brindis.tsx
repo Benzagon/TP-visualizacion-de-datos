@@ -501,7 +501,7 @@ export default function Brindis() {
   return (
     <section
       ref={containerRef}
-      className="relative h-[300vh] border-t border-border bg-background"
+      className="relative h-[300vh]"
       aria-label="Brindis"
     >
       <div className="sticky top-0 flex h-screen flex-col items-center justify-center overflow-hidden px-4">

@@ -3,7 +3,7 @@ import Title from "./Title";
 
 function Mapas() {
   return (
-    <section className="w-full bg-background">
+    <section className="w-full bg-background border-t border-border pt-16">
       <div className="max-w-7xl mx-auto px-6 md:px-10 mb-8">
         <Title>
           El consumo de <span className="text-accent-brown">café</span> y{" "}

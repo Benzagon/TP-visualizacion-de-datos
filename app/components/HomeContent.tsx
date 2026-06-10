@@ -40,8 +40,8 @@ export default function HomeContent() {
 
           <PageStagger>
             {/* <ConsumoCalendario /> */}
-            <Brindis />
             <Mapas />
+            <Brindis />
             <Footer />
           </PageStagger>
         </>
