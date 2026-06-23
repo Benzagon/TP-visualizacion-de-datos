@@ -4,7 +4,7 @@ import FlourishChart from "./FlourishChart";
 
 const MasTomanMate = () => {
   return (
-    <section className="w-full bg-surface border-t border-border">
+    <section className="w-full bg-background border-t border-border">
       <div className="max-w-7xl mx-auto px-6 md:px-10 pt-20 pb-8">
         <Title>Predomina la dulzura</Title>
         <div className="">
