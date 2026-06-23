@@ -6,10 +6,11 @@ import { useReducedMotion } from "../hooks/useReducedMotion";
 
 type ParalaxSeparatorProps = {
   title: string;
+  highlightedWord?: string;
   image: string;
 };
 
-const ParalaxSeparator = ({ title, image }: ParalaxSeparatorProps) => {
+const ParalaxSeparator = ({ title, image, highlightedWord }: ParalaxSeparatorProps) => {
   const reduced = useReducedMotion();
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -49,8 +50,29 @@ const ParalaxSeparator = ({ title, image }: ParalaxSeparatorProps) => {
       />
 
       <div className="relative z-10 flex h-full items-center justify-center px-6">
-        <h2 className="text-center font-display text-3xl font-light tracking-wider text-hero-foreground md:text-4xl lg:text-5xl">
-          {title.toUpperCase()}
+       <h2
+          className="
+            text-center
+            font-display
+            font-semibold
+            leading-[1.02]
+            tracking-[-0.01em]
+            text-hero-foreground
+            text-[4rem]
+            max-w-[18ch]
+          "
+        >
+          {highlightedWord ? (
+            <>
+              {title.split(highlightedWord)[0]}
+              <em className="font-medium italic ">
+                {highlightedWord}
+              </em>
+              {title.split(highlightedWord)[1]}
+            </>
+          ) : (
+            title
+          )}
         </h2>
       </div>
     </div>

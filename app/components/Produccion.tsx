@@ -62,10 +62,6 @@ const ProduccionMate = () => {
       <section className="w-full bg-background border-t border-border">
         <div className="max-w-7xl mx-auto px-6 md:px-10 pt-20 pb-8">
           <div>
-            <Title>
-              Nada más argentino que el
-              <span className="text-accent"> mate</span>
-            </Title>
             <div className="mt-8 md:mt-8 max-w-5xl mx-auto">
               <FlourishChart
                 visualisationId="29322031"
