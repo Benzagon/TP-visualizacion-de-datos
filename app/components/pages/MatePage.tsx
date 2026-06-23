@@ -11,7 +11,7 @@ const MatePage = () => {
         <MateSection />
         <ParalaxSeparator title="La producción" image="/mate_prod.jpg" />
         <ProduccionMate />
-        <ParalaxSeparator title="Los tipos de Mate" image="/tipos_mate.jpg" />
+        <ParalaxSeparator title="Los tipos de mate" image="/tipos_mate.jpg" />
         <TiposDeMate />
         <MasTomanMate />
         <ParalaxSeparator title="El consumo" image="/mate_consumo.jpg" />

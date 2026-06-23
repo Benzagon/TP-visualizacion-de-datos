@@ -1,6 +1,7 @@
 import React from "react";
 import Title from "./Title";
 import FlourishChart from "./FlourishChart";
+import FlourishStory from "./FlourishStory";
 
 const ProduccionCafe = () => {
   return (
@@ -81,11 +82,51 @@ const ProduccionMate = () => {
               El siglo del <span className="text-accent"> mate</span>
             </Title>
             <div className="mt-8">
-              <FlourishChart
-                visualisationId="29147963"
-                type="chart"
-                description="Producción argentina de yerba mate a través del tiempo"
-                height={700}
+              <FlourishStory
+                storyId="3696959"
+                title="Mi historia"
+                description="Texto opcional debajo del título"
+                steps={[
+                  {
+                    slide: 1,
+                    content: (
+                      <>
+                        <h3 className="font-display text-2xl font-medium">
+                          Primer paso
+                        </h3>
+                        <p className="mt-4 text-muted leading-relaxed">
+                          Este texto acompaña la slide 1 de la historia.
+                        </p>
+                      </>
+                    ),
+                  },
+                  {
+                    slide: 2,
+                    content: (
+                      <>
+                        <h3 className="font-display text-2xl font-medium">
+                          Segundo paso
+                        </h3>
+                        <p className="mt-4 text-muted leading-relaxed">
+                          Al llegar acá, Flourish debería avanzar a la slide 2.
+                        </p>
+                      </>
+                    ),
+                  },
+                  {
+                    slide: 3,
+                    content: (
+                      <>
+                        <h3 className="font-display text-2xl font-medium">
+                          Tercer paso
+                        </h3>
+                        <p className="mt-4 text-muted leading-relaxed">
+                          Este texto acompaña la slide 1 de la historia.
+                        </p>
+                      </>
+                    ),
+                  },
+                ]}
               />
             </div>
           </div>

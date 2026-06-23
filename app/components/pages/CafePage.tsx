@@ -3,6 +3,7 @@ import CafeSection from '../CafeSection'
 import { MasTomanCafe } from '../MasToman'
 import { ProduccionCafe } from '../Produccion'
 import ParalaxSeparator from '../ParalaxSeparator'
+import TiposDeCafetera from '../TiposDeCafetera'
 
 const CafePage = () => {
   return (
@@ -11,6 +12,8 @@ const CafePage = () => {
         <MasTomanCafe />
         <ParalaxSeparator title="La producción" image="/cafe_prod.jpg" />
         <ProduccionCafe />
+        <ParalaxSeparator title="Los tipos de cafetera" image="/tipos_cafetera.jpg" />
+        <TiposDeCafetera />
         <ParalaxSeparator title="El consumo" image="/cafe_consumo.jpg" />
     </>
   )
