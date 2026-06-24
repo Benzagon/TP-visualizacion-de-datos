@@ -13,7 +13,7 @@ const MatePage = () => {
         <MateSection />
         <ParalaxSeparator title="Nada más argentino que el mate" image="/mate_prod.jpg" highlightedWord='mate'/>
         <ProduccionMate />
-        <ParalaxSeparator title="Los tipos de mate" image="/tipos_mate.jpg" highlightedWord='mate'/>
+        <ParalaxSeparator title="Para mates, colores" image="/tipos_mate.jpg" highlightedWord='colores'/>
         <TiposDeMate />
         <MasTomanMate />
         <ParalaxSeparator title="El consumo" image="/mate_consumo.jpg" highlightedWord='consumo'/>
