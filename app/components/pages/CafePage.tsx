@@ -17,7 +17,7 @@ const CafePage = () => {
         <TiposDeCafetera /> */}
         <ParalaxSeparator title="El arte del cafe filtrado" image="/cafe_consumo.jpg" highlightedWord='filtrado' />
         <ComoPrepararCafe />
-        <ParalaxSeparator title="El consumo" image="/cafe_consumo.jpg" />
+        <ParalaxSeparator title="El consumo" image="/cafe_consumo.jpg" highlightedWord='consumo'/>
     </>
   )
 }

@@ -12,12 +12,12 @@ const MatePage = () => {
         <MateSection />
         <ParalaxSeparator title="Nada más argentino que el mate" image="/mate_prod.jpg" highlightedWord='mate'/>
         <ProduccionMate />
-        <ParalaxSeparator title="Los tipos de mate" image="/tipos_mate.jpg" />
+        <ParalaxSeparator title="Los tipos de mate" image="/tipos_mate.jpg" highlightedWord='mate'/>
         <TiposDeMate />
         <MasTomanMate />
         <ParalaxSeparator title="El arte de armar un buen mate" image="/mate_consumo.jpg" highlightedWord='armar'/>
         <ComoPrepararMate />
-        <ParalaxSeparator title="El consumo" image="/mate_consumo.jpg" />
+        <ParalaxSeparator title="El consumo" image="/mate_consumo.jpg" highlightedWord='consumo'/>
     </>
 )
 }
