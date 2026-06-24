@@ -15,7 +15,28 @@
   overflow-x: clip;
 }
 
+.cafeRitual {
+  --verde-mate-osc: #2e1a0e;
+  --verde-mate: #9b6a42;
+  --verde-yerba: #c49a6c;
+  --crema: #f5efe0;
+  --crema-card: #fdfaf2;
+  --madera: #b8955a;
+  --tinta: #1e160e;
+  --tinta-suave: #6a5a46;
+  --sombra: rgba(46, 26, 14, 0.16);
+
+  background: var(--crema);
+  color: var(--tinta);
+  font-family: var(--font-body), sans-serif;
+  overflow-x: clip;
+}
+
 .mateRitual ::selection {
+  background: var(--verde-yerba);
+}
+
+.cafeRitual ::selection {
   background: var(--verde-yerba);
 }
 
@@ -196,7 +217,8 @@
 }
 
 .svgMount,
-.mateSvg {
+.mateSvg,
+.coffeeSvg {
   position: absolute;
   inset: 0;
 }
@@ -212,6 +234,74 @@
   transition:
     opacity 0.7s cubic-bezier(0.22, 0.61, 0.36, 1),
     transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.coffeeBaseGroup {
+  transform-origin: 200px 408px;
+}
+
+.grinderHandle {
+  transform-origin: 226px 88px;
+  animation: girarManivela 1.1s linear infinite;
+}
+
+.coffeeFalling circle {
+  animation: particulaCae 1.2s ease-in infinite;
+}
+
+.coffeeFalling circle:nth-child(2) {
+  animation-delay: 0.22s;
+}
+
+.coffeeFalling circle:nth-child(3) {
+  animation-delay: 0.44s;
+}
+
+.coffeeBloom {
+  transform-origin: 200px 280px;
+  animation: bloomPulse 2.4s ease-in-out infinite;
+}
+
+.coffeeBubble {
+  transform-origin: center;
+  animation: burbujaPop 1.8s ease-out infinite;
+}
+
+.kettlePour {
+  transform-origin: 310px 160px;
+  animation: pavaSway 2.8s ease-in-out infinite;
+}
+
+.coffeeFlow {
+  animation: chorroFluye 0.8s linear infinite;
+}
+
+.coffeeDrop {
+  animation: caidaGota 1s ease-in infinite;
+}
+
+.coffeeSteam {
+  transition: opacity 0.7s ease;
+}
+
+.coffeeSteam path {
+  fill: none;
+  stroke: rgba(245, 239, 224, 0.72);
+  stroke-width: 3;
+  stroke-linecap: round;
+  animation: vaporRise 2.8s ease-in-out infinite;
+}
+
+.coffeeSteam path:nth-child(2) {
+  animation-delay: 0.55s;
+  stroke-width: 2.4;
+  opacity: 0.82;
+}
+
+.coffeeSteam path:nth-child(3) {
+  animation-delay: 1.1s;
+  stroke-width: 2.2;
+  opacity: 0.68;
 }
 
 .textCol {
@@ -363,6 +453,60 @@
   line-height: 1.6;
 }
 
+.tips {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 4vh 6vw 8vh;
+}
+
+.tips h2 {
+  font-family: var(--font-display), sans-serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(1.6rem, 3.6vw, 2.3rem);
+  color: var(--verde-mate-osc);
+  text-align: center;
+  margin-bottom: 2.6rem;
+}
+
+.tipsList {
+  display: grid;
+  gap: 1rem;
+}
+
+.tipItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: var(--crema-card);
+  border-radius: 14px;
+  padding: 1.2rem 1.4rem;
+  border: 1px solid rgba(46, 26, 14, 0.07);
+  box-shadow: 0 16px 32px -24px var(--sombra);
+}
+
+.tipIcon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--verde-mate-osc);
+  color: var(--crema);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 0.78rem;
+  font-weight: 600;
+  font-family: var(--font-display), sans-serif;
+}
+
+.tipItem p {
+  font-size: 0.96rem;
+  color: var(--tinta);
+  padding-top: 0.2rem;
+  line-height: 1.55;
+}
+
 @keyframes deslizarCue {
   0% {
     top: -60%;
@@ -382,6 +526,116 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes girarManivela {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes particulaCae {
+  0% {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.7);
+  }
+
+  25% {
+    opacity: 0.9;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(28px) scale(0.5);
+  }
+}
+
+@keyframes bloomPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.045);
+  }
+}
+
+@keyframes burbujaPop {
+  0% {
+    opacity: 0;
+    r: 1;
+  }
+
+  40% {
+    opacity: 0.7;
+  }
+
+  100% {
+    opacity: 0;
+    r: 5;
+  }
+}
+
+@keyframes pavaSway {
+  0%,
+  100% {
+    transform: rotate(-4deg) translate(0, 0);
+  }
+
+  50% {
+    transform: rotate(-2deg) translate(3px, 1px);
+  }
+}
+
+@keyframes chorroFluye {
+  from {
+    stroke-dashoffset: 24;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes caidaGota {
+  0% {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  25% {
+    opacity: 0.95;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(38px);
+  }
+}
+
+@keyframes vaporRise {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scaleX(1);
+  }
+
+  30% {
+    opacity: 0.55;
+  }
+
+  70% {
+    opacity: 0.35;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-38px) scaleX(1.4);
   }
 }
 
@@ -448,7 +702,10 @@
 @media (prefers-reduced-motion: reduce) {
   .mateRitual *,
   .mateRitual *::before,
-  .mateRitual *::after {
+  .mateRitual *::after,
+  .cafeRitual *,
+  .cafeRitual *::before,
+  .cafeRitual *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
