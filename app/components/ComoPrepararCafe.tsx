@@ -51,6 +51,21 @@ const TIPS = [
   "Usa una molienda media-gruesa para cafe de filtro.",
 ];
 
+const CUP = {
+  centerX: 200,
+  rimY: 345,
+  rimRx: 62,
+  rimRy: 15,
+  bodyLeftX: 138,
+  bodyRightX: 262,
+  bottomY: 406,
+  liquidInsetX: 5,
+  liquidBottomY: 404,
+};
+
+const CUP_BODY_PATH = `M ${CUP.bodyLeftX} ${CUP.rimY} C 143 ${CUP.bottomY} 257 ${CUP.bottomY} ${CUP.bodyRightX} ${CUP.rimY} Z`;
+const CUP_HANDLE_PATH = "M 260 356 C 294 354 300 386 270 391";
+
 export default function ComoPrepararCafe() {
   const svgId = useId().replace(/:/g, "");
   const stepRefs = useRef<Array<HTMLDivElement | null>>([]);
@@ -71,6 +86,7 @@ export default function ComoPrepararCafe() {
     shadow: `coffeeShadow-${svgId}`,
     dripperClip: `coffeeDripperClip-${svgId}`,
     cupClip: `coffeeCupClip-${svgId}`,
+    streamClip: `coffeeStreamClip-${svgId}`,
   };
 
   useEffect(() => {
@@ -105,8 +121,10 @@ export default function ComoPrepararCafe() {
   }, []);
 
   const isBrewing = activeStep === 3 || activeStep === 4;
-  const coffeeTopY = activeStep >= 5 ? 348 : activeStep === 4 ? 376 : activeStep === 3 ? 398 : 404;
-  const coffeeVisible = coffeeTopY < 404;
+  const coffeeTopY = activeStep >= 5 ? 348 : activeStep === 4 ? 376 : activeStep === 3 ? 398 : CUP.liquidBottomY;
+  const coffeeVisible = coffeeTopY < CUP.liquidBottomY;
+  const liquidX = CUP.bodyLeftX + CUP.liquidInsetX;
+  const liquidWidth = CUP.bodyRightX - CUP.bodyLeftX - CUP.liquidInsetX * 2;
 
   return (
     <section
@@ -198,7 +216,16 @@ export default function ComoPrepararCafe() {
                     <path d="M 146 210 L 254 210 L 232 304 L 168 304 Z" />
                   </clipPath>
                   <clipPath id={ids.cupClip}>
-                    <path d="M 138 345 C 143 406 257 406 262 345 Z" />
+                    <ellipse cx={CUP.centerX} cy={CUP.rimY} rx={CUP.rimRx} ry={CUP.rimRy} />
+                    <path d={CUP_BODY_PATH} />
+                  </clipPath>
+                  <clipPath id={ids.streamClip}>
+                    <rect
+                      x={CUP.centerX - CUP.rimRx}
+                      y="304"
+                      width={CUP.rimRx * 2}
+                      height={CUP.rimY - 304}
+                    />
                   </clipPath>
                 </defs>
 
@@ -210,47 +237,75 @@ export default function ComoPrepararCafe() {
                   <ellipse cx="200" cy="408" rx="86" ry="16" fill={`url(#${ids.saucer})`} />
                   <ellipse cx="200" cy="405" rx="48" ry="8" fill="#b9aa96" opacity="0.35" />
                   <path
-                    d="M 138 345 C 143 406 257 406 262 345 Z"
+                    d={CUP_BODY_PATH}
                     fill={`url(#${ids.cup})`}
                     filter={`url(#${ids.shadow})`}
                   />
                   <path
-                    d="M 260 356 C 294 354 300 386 270 391"
+                    d={CUP_HANDLE_PATH}
                     fill="none"
                     stroke="#d8cfbf"
                     strokeWidth="13"
                     strokeLinecap="round"
                   />
-                  <ellipse cx="200" cy="345" rx="62" ry="15" fill={`url(#${ids.cupInside})`} />
-                  <g clipPath={`url(#${ids.cupClip})`}>
+                  <ellipse cx={CUP.centerX} cy={CUP.rimY} rx={CUP.rimRx} ry={CUP.rimRy} fill={`url(#${ids.cupInside})`} />
+                  <g id="coffee-liquid-clipped" clipPath={`url(#${ids.cupClip})`}>
                     <rect
                       className={styles.svgAnimated}
-                      x="143"
+                      x={liquidX}
                       y={coffeeTopY + 3}
-                      width="114"
-                      height={Math.max(0, 404 - (coffeeTopY + 3))}
+                      width={liquidWidth}
+                      height={Math.max(0, CUP.liquidBottomY - (coffeeTopY + 3))}
                       fill={`url(#${ids.coffee})`}
                       opacity={coffeeVisible ? 1 : 0}
                     />
+                    <ellipse
+                      className={styles.svgAnimated}
+                      cx={CUP.centerX}
+                      cy={coffeeTopY}
+                      rx={CUP.rimRx - CUP.liquidInsetX * 2 - 2}
+                      ry={CUP.rimRy - 4}
+                      fill={`url(#${ids.coffee})`}
+                      opacity={coffeeVisible ? 1 : 0}
+                    />
+                    <ellipse
+                      className={styles.svgAnimated}
+                      cx={CUP.centerX - 15}
+                      cy={coffeeTopY - 2}
+                      rx="18"
+                      ry="4"
+                      fill="#c4956a"
+                      opacity={activeStep >= 4 ? 0.48 : 0}
+                    />
                   </g>
-                  <ellipse
-                    className={styles.svgAnimated}
-                    cx="200"
-                    cy={coffeeTopY}
-                    rx="50"
-                    ry="11"
-                    fill={`url(#${ids.coffee})`}
-                    opacity={coffeeVisible ? 1 : 0}
-                  />
-                  <ellipse
-                    className={styles.svgAnimated}
-                    cx="185"
-                    cy={coffeeTopY - 2}
-                    rx="18"
-                    ry="4"
-                    fill="#c4956a"
-                    opacity={activeStep >= 4 ? 0.48 : 0}
-                  />
+                  <g id="cup-outline">
+                    <path
+                      d={CUP_BODY_PATH}
+                      fill="none"
+                      stroke="#c8bca8"
+                      strokeWidth="2"
+                      opacity="0.78"
+                    />
+                    <ellipse
+                      cx={CUP.centerX}
+                      cy={CUP.rimY}
+                      rx={CUP.rimRx}
+                      ry={CUP.rimRy}
+                      fill="none"
+                      stroke="#fffaf2"
+                      strokeWidth="5"
+                    />
+                    <ellipse
+                      cx={CUP.centerX}
+                      cy={CUP.rimY}
+                      rx={CUP.rimRx - 5}
+                      ry={CUP.rimRy - 4}
+                      fill="none"
+                      stroke="#b9aa96"
+                      strokeWidth="1.4"
+                      opacity="0.52"
+                    />
+                  </g>
                   <g className={styles.coffeeSteam} opacity={activeStep === 5 ? 1 : 0}>
                     <path d="M 185 326 C 176 308 194 301 187 284" />
                     <path d="M 204 326 C 198 310 212 303 205 286" />
@@ -362,18 +417,23 @@ export default function ComoPrepararCafe() {
                   />
                 </g>
 
-                <g className={styles.svgAnimated} opacity={isBrewing ? 1 : 0}>
+                <g
+                  id="coffee-stream"
+                  className={styles.svgAnimated}
+                  clipPath={`url(#${ids.streamClip})`}
+                  opacity={isBrewing ? 1 : 0}
+                >
                   <path
                     className={styles.coffeeFlow}
-                    d="M 200 304 C 198 318 202 331 200 343"
+                    d={`M ${CUP.centerX} 304 C ${CUP.centerX - 2} 318 ${CUP.centerX + 2} 331 ${CUP.centerX} ${CUP.rimY - 2}`}
                     stroke="#9b6a42"
                     strokeWidth="3.4"
                     strokeLinecap="round"
                     strokeDasharray="6 5"
                     fill="none"
                   />
-                  <circle className={styles.coffeeDrop} cx="200" cy="318" r="2.1" fill="#c4956a" />
-                  <circle className={styles.coffeeDrop} cx="201" cy="335" r="1.7" fill="#8c5430" style={{ animationDelay: "0.35s" }} />
+                  <circle className={styles.coffeeDrop} cx={CUP.centerX} cy="318" r="2.1" fill="#c4956a" />
+                  <circle className={styles.coffeeDrop} cx={CUP.centerX + 1} cy="335" r="1.7" fill="#8c5430" style={{ animationDelay: "0.35s" }} />
                 </g>
 
                 <g className={styles.coffeeSteam} opacity={isBrewing ? 1 : 0}>
