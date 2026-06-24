@@ -105,19 +105,6 @@ const ProduccionMate = () => {
                       </>
                     ),
                   },
-                  {
-                    slide: 3,
-                    content: (
-                      <>
-                        <h3 className="font-display text-2xl font-medium">
-                          Tercer paso
-                        </h3>
-                        <p className="mt-4 text-muted leading-relaxed">
-                          Este texto acompaña la slide 1 de la historia.
-                        </p>
-                      </>
-                    ),
-                  },
                 ]}
               />
             </div>
