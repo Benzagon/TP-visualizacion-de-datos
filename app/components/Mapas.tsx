@@ -3,7 +3,7 @@ import Title from "./Title";
 
 function MapaMate() {
   return (
-    <section className="w-full bg-background border-t border-border pt-16">
+    <section className="w-full bg-background pt-8">
       <div className="max-w-7xl mx-auto px-6 md:px-10 mb-8">
         <div className="mt-16 md:mt-20 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
           <div className="w-full min-w-0">

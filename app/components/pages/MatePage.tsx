@@ -15,8 +15,8 @@ const MatePage = () => {
         <ProduccionMate />
         <ParalaxSeparator title="Para mates, colores" image="/tipos_mate.jpg" highlightedWord='colores'/>
         <TiposDeMate />
-        <MasTomanMate />
         <ParalaxSeparator title="El consumo" image="/mate_consumo.jpg" highlightedWord='consumo'/>
+        <MasTomanMate />
         <MapaMate />
         <ParalaxSeparator title="El arte de armar un buen mate" image="/mate_consumo.jpg" highlightedWord='armar'/>
         <ComoPrepararMate />

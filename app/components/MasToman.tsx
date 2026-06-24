@@ -5,12 +5,12 @@ import FlourishChart from "./FlourishChart";
 const MasTomanMate = () => {
   return (
     <section className="w-full bg-background border-t border-border">
-      <div className="max-w-7xl mx-auto px-6 md:px-10 pt-20 pb-8">
-        <Title>Predomina la dulzura</Title>
+      <div className="max-w-7xl mx-auto px-6 md:px-10 pt-20">
         <div className="">
           <div className="mt-8">
             <FlourishChart
               dark
+              title="Predomina la dulzura"
               visualisationId="29226983"
               type="chart"
               description="Cantidad de personas que prefieren cada tipo de mate"
