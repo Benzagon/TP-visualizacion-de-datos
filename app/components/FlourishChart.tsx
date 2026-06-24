@@ -122,7 +122,7 @@ export default function FlourishChart({
       )}
 
       <motion.div
-        className={`relative ${dark ? "bg-surface" : "bg-background"} flex items-center justify-end`}
+        className={`relative ${dark ? "bg-background" : "bg-background"} flex items-center justify-end`}
         style={{
           width: typeof width === "number" ? `${width}px` : (width ?? "100%"),
           minHeight: typeof height === "number" ? `${height}px` : height,
