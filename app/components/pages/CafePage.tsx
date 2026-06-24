@@ -13,8 +13,8 @@ const CafePage = () => {
         <MasTomanCafe />
         <ParalaxSeparator title="Brasil, la tierra del cafetero" image="/cafe_prod.jpg" highlightedWord='cafetero' />
         <ProduccionCafe />
-        <ParalaxSeparator title="Los tipos de cafetera" image="/tipos_cafetera.jpg" />
-        <TiposDeCafetera />
+        {/* <ParalaxSeparator title="Los tipos de cafetera" image="/tipos_cafetera.jpg" />
+        <TiposDeCafetera /> */}
         <ParalaxSeparator title="El arte del cafe filtrado" image="/cafe_consumo.jpg" highlightedWord='filtrado' />
         <ComoPrepararCafe />
         <ParalaxSeparator title="El consumo" image="/cafe_consumo.jpg" />
