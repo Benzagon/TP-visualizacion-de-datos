@@ -24,7 +24,7 @@ const MasTomanMate = () => {
 };
 const MasTomanCafe = () => {
   return (
-    <section className="w-full bg-surface border-t border-border">
+    <section className="w-full bg-background border-t border-border">
       <div className="max-w-7xl mx-auto px-6 md:px-10 py-20 md:py-28">
           <Title>Carta de amor al <span className="text-accent-brown">filtro manual</span></Title>        
           <div className="mt-4">
