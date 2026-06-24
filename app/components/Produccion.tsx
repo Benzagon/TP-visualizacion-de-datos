@@ -71,7 +71,7 @@ const ProduccionMate = () => {
           </div>
           <div className="max-w-7xl mx-auto px-6 md:px-10 py-20">
             <Title dark>
-              El siglo del <span className="text-accent"> mate</span>
+              Los 2000, el siglo del <span className="text-accent"> mate</span>
             </Title>
             <div className="mt-8">
               <FlourishStory
@@ -79,6 +79,14 @@ const ProduccionMate = () => {
                 steps={[
                   {
                     slide: 1,
+                    hide: true,
+                    content: (
+                      <>
+                      </>
+                    ),
+                  },
+                  {
+                    slide: 2,
                     content: (
                       <>
                         <h3 className="font-display text-2xl font-medium text-center">
@@ -92,7 +100,7 @@ En 1999 la producción de yerba mate creció fuertemente debido a mejores condic
                     ),
                   },
                   {
-                    slide: 2,
+                    slide: 3,
                     content: (
                       <>
                         <h3 className="font-display text-2xl font-medium text-center">

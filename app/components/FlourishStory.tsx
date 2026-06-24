@@ -6,6 +6,7 @@ import type { ReactNode } from "react";
 export interface FlourishStoryStep {
   slide: number;
   content: ReactNode;
+  hide?: boolean
 }
 
 interface FlourishStoryProps {
@@ -75,19 +76,22 @@ export default function FlourishStory({
           />
 
           {steps.map((step) => (
-            <section
-              key={step.slide}
-              className="relative min-[2rem] bg-white"
-            >
-              <div className="w-full max-w-5xl rounded-3xl bg-white px-10 py-8 md:px-12 md:py-10">
-                {step.content}
-              </div>
-
-              <a
-                href={`#story/${storyId}/slide-${step.slide}`}
-                aria-hidden="true"
-              />
-            </section>
+            !step.hide ? 
+              <section
+                key={step.slide}
+                className="relative min-[2rem] bg-white"
+              >
+                <div className="w-full max-w-5xl rounded-3xl bg-white px-10 py-8 md:px-12 md:py-10">
+                  {step.content}
+                </div>
+  
+                <a
+                  href={`#story/${storyId}/slide-${step.slide}`}
+                  aria-hidden="true"
+                />
+              </section>
+              :
+              <></>
           ))}
         </div>
       </figure>
