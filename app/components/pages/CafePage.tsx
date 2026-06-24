@@ -10,7 +10,7 @@ const CafePage = () => {
     <>
         <CafeSection></CafeSection>
         <MasTomanCafe />
-        <ParalaxSeparator title="La producción" image="/cafe_prod.jpg" />
+        <ParalaxSeparator title="Brasil, la tierra del cafetero" image="/cafe_prod.jpg" highlightedWord='cafetero' />
         <ProduccionCafe />
         <ParalaxSeparator title="Los tipos de cafetera" image="/tipos_cafetera.jpg" />
         <TiposDeCafetera />

@@ -9,10 +9,6 @@ const ProduccionCafe = () => {
       <section className="w-full bg-background border-t border-border">
         <div className="max-w-7xl mx-auto px-6 md:px-10 pt-20 pb-8">
           <div>
-            <Title>
-              Brasil, la tierra del{" "}
-              <span className="text-accent-brown">cafetero</span>
-            </Title>
             <div className="mt-8 md:mt-8 max-w-5xl mx-auto">
               <FlourishChart
                 visualisationId="29154655"
@@ -79,7 +75,7 @@ const ProduccionMate = () => {
             </Title>
             <div className="mt-8">
               <FlourishStory
-                storyId="3696959"
+                storyId="3713850"
                 title="Mi historia"
                 description="Texto opcional debajo del título"
                 steps={[
