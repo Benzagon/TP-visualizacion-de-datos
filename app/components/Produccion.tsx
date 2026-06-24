@@ -83,11 +83,12 @@ const ProduccionMate = () => {
                     slide: 1,
                     content: (
                       <>
-                        <h3 className="font-display text-2xl font-medium">
-                          Primer paso
+                        <h3 className="font-display text-2xl font-medium text-center">
+                        Producción en 1999:
+                        703.4 miles de toneladas
                         </h3>
-                        <p className="mt-4 text-muted leading-relaxed">
-                          Este texto acompaña la slide 1 de la historia.
+                        <p className="mt-2 text-muted leading-relaxed">
+En 1999 la producción de yerba mate creció fuertemente debido a mejores condiciones climáticas, expansión del cultivo y una recuperación del consumo interno.
                         </p>
                       </>
                     ),
@@ -96,11 +97,12 @@ const ProduccionMate = () => {
                     slide: 2,
                     content: (
                       <>
-                        <h3 className="font-display text-2xl font-medium">
-                          Segundo paso
+                        <h3 className="font-display text-2xl font-medium text-center">
+                          Producción en 2014:
+                          849 miles de toneladas
                         </h3>
-                        <p className="mt-4 text-muted leading-relaxed">
-                          Al llegar acá, Flourish debería avanzar a la slide 2.
+                        <p className="mt-2 text-muted leading-relaxed">
+En 2014 la yerba mate ganó presencia internacional como producto asociado a hábitos saludables, aumentando la demanda y las inversiones del sector.
                         </p>
                       </>
                     ),
