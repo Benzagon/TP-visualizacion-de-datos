@@ -76,8 +76,6 @@ const ProduccionMate = () => {
             <div className="mt-8">
               <FlourishStory
                 storyId="3713871"
-                title="Mi historia"
-                description="Texto opcional debajo del título"
                 steps={[
                   {
                     slide: 1,
