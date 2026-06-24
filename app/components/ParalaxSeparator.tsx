@@ -24,7 +24,7 @@ const ParalaxSeparator = ({ title, image, highlightedWord }: ParalaxSeparatorPro
   return (
     <div
       ref={containerRef}
-      className="relative w-full overflow-hidden h-96"
+      className="relative w-full overflow-hidden h-[32rem]"
       aria-label={title}
     >
       {reduced ? (

@@ -5,6 +5,7 @@ import { ProduccionMate } from '../Produccion'
 import ParalaxSeparator from '../ParalaxSeparator'
 import TiposDeMate from '../TiposDeMate'
 import ComoPrepararMate from '../ComoPrepararMate'
+import { MapaMate } from '../Mapas'
 
 const MatePage = () => {
   return (
@@ -15,9 +16,10 @@ const MatePage = () => {
         <ParalaxSeparator title="Los tipos de mate" image="/tipos_mate.jpg" highlightedWord='mate'/>
         <TiposDeMate />
         <MasTomanMate />
+        <ParalaxSeparator title="El consumo" image="/mate_consumo.jpg" highlightedWord='consumo'/>
+        <MapaMate />
         <ParalaxSeparator title="El arte de armar un buen mate" image="/mate_consumo.jpg" highlightedWord='armar'/>
         <ComoPrepararMate />
-        <ParalaxSeparator title="El consumo" image="/mate_consumo.jpg" highlightedWord='consumo'/>
     </>
 )
 }

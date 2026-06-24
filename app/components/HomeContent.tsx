@@ -2,9 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useScrollGate } from "../hooks/useScrollGate";
-import Footer from "./Footer";
 import Hero, { type DrinkSelection } from "./Hero";
-import Mapas from "./Mapas";
 import PageStagger from "./motion/PageStagger";
 import CafePage from "./pages/CafePage";
 import MatePage from "./pages/MatePage";
@@ -42,7 +40,6 @@ export default function HomeContent() {
           </div>
 
           <PageStagger>
-            <Mapas />
             <Brindis />
 
             <section className="flex justify-center py-24 px-6">
