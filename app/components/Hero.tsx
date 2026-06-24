@@ -9,7 +9,7 @@ export type DrinkSelection = "cafe" | "mate" | null;
 
 const AUTHORS = ["Franco Arrieta", "Agustín Basmagi", "Gonzalo Benzaquen"];
 const TITLE_INTRO = "Las infusiones.";
-const TITLE_PROMPT = "Elegir mate o café";
+const TITLE_PROMPT = "Cafe o mate";
 
 const TITLE_BASE =
   "col-start-1 row-start-1 text-center font-display text-4xl font-semibold tracking-tight md:text-6xl lg:text-7xl";
