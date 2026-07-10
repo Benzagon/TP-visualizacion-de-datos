@@ -10,13 +10,31 @@ const ProduccionCafe = () => {
         <div className="max-w-7xl mx-auto px-6 md:px-10 pt-20 pb-8">
           <div>
             <div className="mt-8 md:mt-8 max-w-5xl mx-auto">
-              <FlourishChart
-                visualisationId="29154655"
-                type="hierarchy"
-                title="Principales productores de café de LATAM"
-                width="88%"
-                className="text-center mt-0"
-                height={780}
+              <FlourishStory
+                storyId="3727003"
+                steps={[
+                  {
+                    slide: 1,
+                    hide: true,
+                    content: (
+                      <>
+                      </>
+                    ),
+                  },
+                  {
+                    slide: 2,
+                    content: (
+                      <>
+                        <h3 className="font-display text-2xl font-medium text-center">
+                        Brasil domina la producción de café en Sudamérica
+                        </h3>
+                        <p className="mt-2 text-muted leading-relaxed">
+Brasil y Colombiay concentran la producción de Café. Brasil lidera con 75.08 millones de sacos producidos.
+                        </p>
+                      </>
+                    ),
+                  },
+                ]}
               />
             </div>
           </div>
