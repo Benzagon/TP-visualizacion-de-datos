@@ -79,9 +79,9 @@ export default function FlourishStory({
             !step.hide ? 
               <section
                 key={step.slide}
-                className="relative min-[2rem] bg-white"
+                className="relative min-[2rem]"
               >
-                <div className="w-full max-w-5xl rounded-3xl bg-white px-10 py-8 md:px-12 md:py-10">
+                <div className="w-full max-w-5xl rounded-3xl px-10 py-8 md:px-12 md:py-10">
                   {step.content}
                 </div>
   

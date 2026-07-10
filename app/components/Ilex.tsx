@@ -10,7 +10,7 @@ import { forwardRef, useRef } from "react";
 import { useHeroScroll } from "../hooks/useHeroScroll";
 import { useReducedMotion } from "../hooks/useReducedMotion";
 
-const ILEX_SCROLL_VH = 3.25;
+const ILEX_SCROLL_VH = 4;
 const CIRCLE_REVEAL_RANGE: [number, number] = [0.18, 0.72];
 const CONTENT_ENTER_RANGE: [number, number] = [0.7, 0.86];
 

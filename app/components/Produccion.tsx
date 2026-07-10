@@ -59,20 +59,35 @@ const ProduccionMate = () => {
         <div className="max-w-7xl mx-auto px-6 md:px-10 pt-20 pb-8">
           <div>
             <div className="mt-8 md:mt-8 max-w-5xl mx-auto">
-              <FlourishChart
-                visualisationId="29322031"
-                type="hierarchy"
-                title="Principales productores de mate en LATAM"
-                width="88%"
-                className="text-center mt-0"
-                height={780}
+              <FlourishStory
+                storyId="3726609"
+                steps={[
+                  {
+                    slide: 1,
+                    hide: true,
+                    content: (
+                      <>
+                      </>
+                    ),
+                  },
+                  {
+                    slide: 2,
+                    content: (
+                      <>
+                        <h3 className="font-display text-2xl font-medium text-center">
+                        Argentina domina la producción de yerba mate en Sudamérica
+                        </h3>
+                        <p className="mt-2 text-muted leading-relaxed">
+Argentina, Brasil y Paraguay concentran la producción mundial de yerba mate. Argentina lidera con 882.6 millones de sacos producidos.
+                        </p>
+                      </>
+                    ),
+                  },
+                ]}
               />
             </div>
           </div>
           <div className="max-w-7xl mx-auto px-6 md:px-10 py-20">
-            <Title dark>
-              Los 2000, el siglo del <span className="text-accent"> mate</span>
-            </Title>
             <div className="mt-8">
               <FlourishStory
                 storyId="3713871"
