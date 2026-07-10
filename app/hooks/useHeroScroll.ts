@@ -32,8 +32,6 @@ const TITLE_CROSSFADE: [number, number] = [0.47, 0.6];
 
 type HeroScrollValues = {
   scrollYProgress: MotionValue<number>;
-  /** Alias for scrollYProgress — consumed by the scroll-audio hook in Hero. */
-  scrollProgress: MotionValue<number>;
   circleClipPath: MotionValue<string>;
   imageScale: MotionValue<number>;
   introTitleOpacity: MotionValue<number>;
@@ -102,7 +100,6 @@ export function useHeroScroll(
 
   return {
     scrollYProgress,
-    scrollProgress: scrollYProgress, // alias consumed by useScrollAudio
     circleClipPath,
     imageScale,
     introTitleOpacity,

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useMotionValueEvent } from "framer-motion";
-import { forwardRef, useEffect, useRef, useState } from "react";
+import { forwardRef, useRef, useState } from "react";
 import { HERO_SCROLL_VH, useHeroScroll } from "../hooks/useHeroScroll";
 import { useReducedMotion } from "../hooks/useReducedMotion";
 
@@ -155,56 +155,6 @@ function HeroTitles({
 }
 
 // ---------------------------------------------------------------------------
-// Scroll-triggered audio hook
-// ---------------------------------------------------------------------------
-function useScrollAudio(
-  scrollProgress: ReturnType<typeof useHeroScroll>["scrollYProgress"],
-  reduced: boolean,
-) {
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-
-  // Clean up on unmount
-  useEffect(() => {
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current = null;
-      }
-    };
-  }, []);
-
-  useMotionValueEvent(scrollProgress, "change", (latest) => {
-    // Skip audio entirely for users who prefer reduced motion
-    if (reduced) return;
-
-    // Lazily create the Audio instance on first interaction so we stay within
-    // browser autoplay policies (gesture → scroll → Audio creation/play).
-    if (!audioRef.current) {
-      const audio = new Audio("/song.mp3");
-      audio.loop = true;
-      audioRef.current = audio;
-    }
-
-    const audio = audioRef.current;
-
-    if (latest <= 0) {
-      // Back at the very top — pause and rewind
-      audio.pause();
-      audio.currentTime = 0;
-    } else {
-      // Fade volume in with scroll (0 → 1 over the first 30% of the section)
-      audio.volume = Math.min(latest / 0.3, 1);
-
-      if (audio.paused) {
-        // play() returns a Promise; swallow the rejection that fires when the
-        // browser blocks autoplay before any user gesture has occurred.
-        audio.play().catch(() => {});
-      }
-    }
-  });
-}
-
-// ---------------------------------------------------------------------------
 // Hero
 // ---------------------------------------------------------------------------
 type HeroProps = {
@@ -229,8 +179,6 @@ const Hero = forwardRef<HTMLElement, HeroProps>(function Hero(
     scrollHintOpacity,
     scrollYProgress,
   } = useHeroScroll(containerRef, reduced);
-
-  useScrollAudio(scrollYProgress, reduced);
 
   useMotionValueEvent(scrollYProgress, "change", (progress) => {
     if (reduced) {
