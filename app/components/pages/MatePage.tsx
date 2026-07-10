@@ -17,10 +17,11 @@ const MatePage = () => {
         <Plantation />
         <ParalaxSeparator title="Nada más argentino que el mate" image="/mate_prod.jpg" highlightedWord='mate'/>
         <ProduccionMate />
+        <ParalaxSeparator title="La anatomía de un mate" image="/anatomiaMate.png" highlightedWord='anatomía'/>
+        <MateSection />
         <ParalaxSeparator title="Para mates, colores" image="/tipos_mate.jpg" highlightedWord='colores'/>
         <TiposDeMate />
         <ParalaxSeparator title="El consumo" image="/mate_consumo.jpg" highlightedWord='consumo'/>
-        <MateSection />
         <MasTomanMate />
         <MapaMate />
         <ParalaxSeparator title="El arte de armar un buen mate" image="/mate_consumo.jpg" highlightedWord='armar'/>

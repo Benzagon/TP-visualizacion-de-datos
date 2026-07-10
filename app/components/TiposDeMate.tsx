@@ -63,39 +63,69 @@ function getActiveSceneIndex(sections: (HTMLDivElement | null)[]) {
   ).index;
 }
 
-function StoryPanel({
-  scene,
-  index,
-  reduced,
-}: {
-  scene: MateScene;
-  index: number;
-  reduced: boolean;
-}) {
+function SceneImage({ scene, index, activeIndex, reduced }: { scene: MateScene; index: number; activeIndex: number; reduced: boolean }) {
+  return (
+    <div className="sticky top-0 flex h-screen w-1/2 shrink-0 items-center self-start overflow-hidden p-16">
+      <div className="relative h-[76vh] w-full overflow-hidden rounded-2xl">
+        <AnimatePresence mode="sync">
+          {index === activeIndex && (
+            <motion.div
+              key={scene.id}
+              className="absolute inset-0"
+              initial={reduced ? { opacity: 1 } : { opacity: 0, scale: 1.04 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={reduced ? { opacity: 0 } : { opacity: 0, scale: 0.985 }}
+              transition={{ duration: reduced ? 0 : 0.38, ease: EASE }}
+            >
+              <Image
+                src={scene.image}
+                alt={scene.alt}
+                fill
+                priority={index === 0}
+                sizes="50vw"
+                className="object-cover object-center"
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+
+      </div>
+    </div>
+  );
+}
+
+function SceneText({ scene, reduced }: { scene: MateScene; reduced: boolean }) {
   const hidden = reduced ? { opacity: 1, y: 0 } : { opacity: 0, y: 44 };
   const visible = { opacity: 1, y: 0 };
 
   return (
-      <motion.article
-    className="mx-auto max-w-md text-center text-hero-foreground"
-    initial={hidden}
-    whileInView={visible}
-    exit={hidden}
-    viewport={{ amount: 0.6, margin: "-8% 0px -8% 0px" }}
-    transition={{ duration: reduced ? 0 : 0.85, ease: EASE }}
-  >
-    <p className="font-body text-xs uppercase tracking-[0.35em] text-hero-foreground/60">
-      TIPO DE MATE
-    </p>
+    <div className="w-1/2 bg-background">
+      <div className="flex min-h-[140vh] items-center px-16 py-32">
+        <div className="max-w-md">
+          <motion.article
+            className="text-hero-foreground"
+            initial={hidden}
+            whileInView={visible}
+            exit={hidden}
+            viewport={{ amount: 0.6, margin: "-8% 0px -8% 0px" }}
+            transition={{ duration: reduced ? 0 : 0.85, ease: EASE }}
+          >
+            <p className="font-body text-xs uppercase tracking-[0.35em] text-muted">
+              TIPO DE MATE
+            </p>
 
-    <h2 className="mt-4 font-display text-5xl font-bold leading-none tracking-tight text-hero-foreground">
-      {scene.title}
-    </h2>
+            <h2 className="mt-4 font-display text-5xl font-bold leading-none tracking-tight text-foreground">
+              {scene.title}
+            </h2>
 
-    <p className="font-body text-lg font-normal leading-relaxed text-hero-foreground/60 mt-4">
-      {scene.body}
-    </p>
-  </motion.article>
+            <p className="mt-6 font-body text-lg font-normal leading-relaxed text-muted">
+              {scene.body}
+            </p>
+          </motion.article>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -133,74 +163,39 @@ export default function TiposDeMate() {
     };
   }, [updateActiveScene]);
 
-  const activeScene = MATE_SCENES[activeIndex];
-
   return (
-    <section className="relative w-full bg-[#29493D] text-hero-foreground">
-      <div className="grid min-h-screen grid-cols-[minmax(0,1fr)_minmax(0,1fr)] items-start">
-        <div className="sticky top-0 h-screen px-8 py-8">
-          <div className="relative h-full w-full overflow-hidden rounded-[20px] border border-white/12 bg-[#10231d]">
-            <AnimatePresence mode="sync">
-              <motion.div
-                key={activeScene.id}
-                className="absolute inset-0"
-                initial={
-                  reduced ? { opacity: 1 } : { opacity: 0, scale: 1.04 }
-                }
-                animate={{ opacity: 1, scale: 1 }}
-                exit={reduced ? { opacity: 0 } : { opacity: 0, scale: 0.985 }}
-                transition={{ duration: reduced ? 0 : 0.38, ease: EASE }}
-              >
-                <Image
-                  src={activeScene.image}
-                  alt={activeScene.alt}
-                  fill
-                  priority={activeIndex === 0}
-                  sizes="50vw"
-                  className="object-cover object-center"
-                />
-              </motion.div>
-            </AnimatePresence>
-
-            <div
-              className="absolute inset-0 bg-[linear-gradient(90deg,rgb(9_24_19/.72),rgb(9_24_19/.16)_48%,rgb(9_24_19/.55)),linear-gradient(180deg,rgb(9_24_19/.18),rgb(9_24_19/.35))]"
-              aria-hidden
-            />
-
-            <div
-              className="absolute bottom-6 left-6 flex gap-2"
-              aria-label="Progreso de tipos de mate"
-            >
-              {MATE_SCENES.map((scene, index) => (
-                <span
-                  key={scene.id}
-                  className={`h-1.5 rounded-full transition-all duration-500 ${
-                    index === activeIndex
-                      ? "w-10 bg-hero-foreground"
-                      : "w-4 bg-hero-foreground/35"
-                  }`}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <div className="relative z-10">
-          {MATE_SCENES.map((scene, index) => (
-            <div
-              key={scene.id}
-              ref={(element) => {
-                sectionRefs.current[index] = element;
-              }}
-              className="flex min-h-screen items-center justify-center px-12 py-28"
-            >
-              <div className="mx-auto w-full max-w-2xl">
-                <StoryPanel scene={scene} index={index} reduced={reduced} />
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+    <section className="w-full border-t border-border bg-background">
+      {MATE_SCENES.map((scene, index) => (
+        <section
+          key={scene.id}
+          ref={(element: HTMLDivElement | null) => {
+            sectionRefs.current[index] = element;
+          }}
+          className="flex w-full flex-row bg-background"
+        >
+          {index % 2 === 0 ? (
+            <>
+              <SceneImage
+                scene={scene}
+                index={index}
+                activeIndex={activeIndex}
+                reduced={reduced}
+              />
+              <SceneText scene={scene} reduced={reduced} />
+            </>
+          ) : (
+            <>
+              <SceneText scene={scene} reduced={reduced} />
+              <SceneImage
+                scene={scene}
+                index={index}
+                activeIndex={activeIndex}
+                reduced={reduced}
+              />
+            </>
+          )}
+        </section>
+      ))}
     </section>
   );
 }
