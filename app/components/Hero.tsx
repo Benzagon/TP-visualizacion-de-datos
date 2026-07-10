@@ -9,7 +9,7 @@ export type DrinkSelection = "cafe" | "mate" | null;
 
 const AUTHORS = ["Franco Arrieta", "Agustín Basmagi", "Gonzalo Benzaquen"];
 const TITLE_INTRO = "Las infusiones.";
-const TITLE_PROMPT = "Cafe o mate";
+const TITLE_PROMPT = "Café o mate";
 
 const TITLE_BASE =
   "col-start-1 row-start-1 text-center font-display text-4xl font-semibold tracking-tight md:text-6xl lg:text-7xl";
@@ -20,12 +20,14 @@ const SELECTION_READY_PROGRESS = 0.55;
 function HeroSelectionOverlays({
   interactive,
   onSelect,
+  onHover,
 }: {
   interactive: boolean;
   onSelect: (option: "cafe" | "mate") => void;
+  onHover: (option: "cafe" | "mate" | null) => void;
 }) {
   const sideBase =
-    "relative h-full w-1/2 border-0 bg-transparent p-0 transition-[background-color] duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-hero-foreground";
+    "relative h-full w-1/2 border-0 bg-transparent p-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-hero-foreground";
 
   return (
     <div
@@ -38,16 +40,20 @@ function HeroSelectionOverlays({
         type="button"
         disabled={!interactive}
         tabIndex={interactive ? 0 : -1}
-        className={`${sideBase} ${interactive ? "cursor-pointer hover:bg-[color-mix(in_srgb,var(--hero-split-brown)_24%,transparent)]" : "cursor-default"}`}
+        className={`${sideBase} ${interactive ? "cursor-pointer" : "cursor-default"}`}
         onClick={() => onSelect("cafe")}
+        onMouseEnter={() => onHover("cafe")}
+        onMouseLeave={() => onHover(null)}
         aria-label="Seleccionar café"
       />
       <button
         type="button"
         disabled={!interactive}
         tabIndex={interactive ? 0 : -1}
-        className={`${sideBase} ${interactive ? "cursor-pointer hover:bg-[color-mix(in_srgb,var(--hero-split-green)_24%,transparent)]" : "cursor-default"}`}
+        className={`${sideBase} ${interactive ? "cursor-pointer" : "cursor-default"}`}
         onClick={() => onSelect("mate")}
+        onMouseEnter={() => onHover("mate")}
+        onMouseLeave={() => onHover(null)}
         aria-label="Seleccionar mate"
       />
     </div>
@@ -57,12 +63,15 @@ function HeroSelectionOverlays({
 function HeroSplitCircle({
   circleClipPath,
   imageScale,
+  hoveredSide,
 }: {
   circleClipPath: ReturnType<typeof useHeroScroll>["circleClipPath"];
   imageScale: ReturnType<typeof useHeroScroll>["imageScale"];
+  hoveredSide: "cafe" | "mate" | null;
 }) {
   const halfBase =
-    "h-full w-1/2 bg-cover bg-center bg-no-repeat will-change-transform";
+    "h-full w-1/2 bg-cover bg-center bg-no-repeat transition-transform duration-300 ease-out will-change-transform";
+  const hoverScale = 1.07;
 
   return (
     <motion.div
@@ -77,11 +86,17 @@ function HeroSplitCircle({
       >
         <div
           className={halfBase}
-          style={{ backgroundImage: "url('/hero/CoffeeHalf.jpg')" }}
+          style={{
+            backgroundImage: "url('/hero/CoffeeHalf.jpg')",
+            transform: hoveredSide === "cafe" ? `scale(${hoverScale})` : "scale(1)",
+          }}
         />
         <div
           className={halfBase}
-          style={{ backgroundImage: "url('/hero/MateHalf.png')" }}
+          style={{
+            backgroundImage: "url('/hero/MateHalf.png')",
+            transform: hoveredSide === "mate" ? `scale(${hoverScale})` : "scale(1)",
+          }}
         />
       </motion.div>
 
@@ -180,6 +195,7 @@ const Hero = forwardRef<HTMLElement, HeroProps>(function Hero(
   const containerRef = useRef<HTMLElement>(null);
   const reduced = useReducedMotion();
   const [interactive, setInteractive] = useState(reduced);
+  const [hoveredSide, setHoveredSide] = useState<"cafe" | "mate" | null>(null);
   const {
     circleClipPath,
     imageScale,
@@ -217,9 +233,17 @@ const Hero = forwardRef<HTMLElement, HeroProps>(function Hero(
       aria-label="Introducción"
     >
       <div className="sticky top-0 h-screen w-full overflow-hidden bg-background">
-        <HeroSplitCircle circleClipPath={circleClipPath} imageScale={imageScale} />
+        <HeroSplitCircle
+          circleClipPath={circleClipPath}
+          imageScale={imageScale}
+          hoveredSide={hoveredSide}
+        />
 
-        <HeroSelectionOverlays interactive={interactive} onSelect={onSelect} />
+        <HeroSelectionOverlays
+          interactive={interactive}
+          onSelect={onSelect}
+          onHover={setHoveredSide}
+        />
 
         <motion.div
           className="pointer-events-none absolute z-10 flex flex-col items-start justify-start gap-1 px-8 pt-10 md:px-12 md:pt-12"
