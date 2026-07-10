@@ -6,10 +6,15 @@ import ParalaxSeparator from '../ParalaxSeparator'
 import TiposDeCafetera from '../TiposDeCafetera'
 import ComoPrepararCafe from '../ComoPrepararCafe'
 import { MapaCafe } from '../Mapas'
+import Cafeto from '../Cafeto'
+import PlantationCafe from '../PlantationCafe'
 
 const CafePage = () => {
   return (
     <>
+        <ParalaxSeparator title="La fuente de la infusion" image="/cafePlantacion.jpg" highlightedWord='fuente' />
+        <Cafeto></Cafeto>
+        <PlantationCafe />
         <CafeSection></CafeSection>
         <MasTomanCafe />
         <ParalaxSeparator title="Brasil, la tierra del cafetero" image="/cafe_prod.jpg" highlightedWord='cafetero' />
