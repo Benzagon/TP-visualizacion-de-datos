@@ -8,8 +8,7 @@ import { useReducedMotion } from "../hooks/useReducedMotion";
 export type DrinkSelection = "cafe" | "mate" | null;
 
 const AUTHORS = ["Franco Arrieta", "Agustín Basmagi", "Gonzalo Benzaquen"];
-const TITLE_INTRO = "Las infusiones.";
-const TITLE_PROMPT = "Café o mate";
+const TITLE_PROMPT = "Café o Mate";
 
 const TITLE_BASE =
   "col-start-1 row-start-1 text-center font-display text-4xl font-semibold tracking-tight md:text-6xl lg:text-7xl";
@@ -128,32 +127,12 @@ function HeroSplitTitleLayer({
       style={{ opacity, y }}
       aria-hidden
     >
-      {/* Top-left half — white over the image */}
-      <h1
-        className={`${TITLE_BASE} text-hero-foreground`}
-        style={{ clipPath: "polygon(0 0, 100% 0, 0 100%)" }}
-      >
-        {text}
-      </h1>
-
-      {/* Bottom-right half — slightly warm tint for visual contrast */}
-      <h1
-        className={TITLE_BASE}
-        style={{
-          clipPath: "polygon(100% 0, 100% 100%, 0 100%)",
-          color:
-            "color-mix(in srgb, var(--hero-foreground) 92%, var(--accent-brown))",
-        }}
-      >
-        {text}
-      </h1>
+      <h1 className={`${TITLE_BASE} text-hero-foreground`}>{text}</h1>
     </motion.div>
   );
 }
 
 function HeroTitles({
-  introTitleOpacity,
-  introTitleY,
   promptTitleOpacity,
   promptTitleY,
 }: {
@@ -165,17 +144,12 @@ function HeroTitles({
   return (
     <div className="pointer-events-none relative z-10 grid w-full max-w-4xl place-items-center px-6">
       <HeroSplitTitleLayer
-        text={TITLE_INTRO}
-        opacity={introTitleOpacity}
-        y={introTitleY}
-      />
-      <HeroSplitTitleLayer
         text={TITLE_PROMPT}
         opacity={promptTitleOpacity}
         y={promptTitleY}
       />
       <p className="sr-only">
-        {TITLE_INTRO} Desplázate para elegir entre mate o café.
+        Desplázate para elegir entre mate o café.
       </p>
     </div>
   );
