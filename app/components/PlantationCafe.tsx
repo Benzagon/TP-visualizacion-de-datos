@@ -20,7 +20,7 @@ const BLOCKS: PlantationCafeBlock[] = [
     imageSide: "left",
     content: (
       <>
-        El <span className="rounded-sm px-1.5 py-0.5">Coffea arabica</span> se
+        El <span className="rounded-sm px-1.5 py-0.5">Café arábica</span> se
         desarrolla mejor entre{" "}
         <span className="rounded-sm px-1.5 py-0.5">900 y 2000 metros</span>{" "}
         sobre el nivel del mar, con temperaturas medias de{" "}

@@ -12,15 +12,16 @@ import PlantationCafe from '../PlantationCafe'
 const CafePage = () => {
   return (
     <>
-        <ParalaxSeparator title="La fuente de la infusion" image="/cafePlantacion.jpg" highlightedWord='fuente' />
+        <ParalaxSeparator title="La fuente de la infusión" image="/cafePlantacion.jpg" highlightedWord='fuente' />
         <Cafeto></Cafeto>
         <PlantationCafe />
         <ParalaxSeparator title="Brasil, la tierra del cafetero" image="/cafePlantation.jpg" highlightedWord='cafetero' />
         <ProduccionCafe />
         {/* <ParalaxSeparator title="Los tipos de cafetera" image="/tipos_cafetera.jpg" />
         <TiposDeCafetera /> */}
-        <ParalaxSeparator title="El consumo" image="/cafe_consumo.jpg" highlightedWord='consumo'/>
+        <ParalaxSeparator title="La anatomía de un café" image="/anatomiaCafe.png" highlightedWord='anatomía'/>
         <CafeSection></CafeSection>
+        <ParalaxSeparator title="El consumo" image="/cafe_consumo.jpg" highlightedWord='consumo'/>
         <MasTomanCafe />
         <MapaCafe />
         <ParalaxSeparator title="El arte del cafe filtrado" image="/cafe_consumo.jpg" highlightedWord='filtrado' />

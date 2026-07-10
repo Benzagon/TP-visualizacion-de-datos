@@ -40,16 +40,33 @@ Brasil y Colombiay concentran la producción de Café. Brasil lidera con 75.08 m
           </div>
 
           <div className="mt-8">
-            <Title>Brasil no para de producir</Title>
-            <div className="mt-16 md:mt-20">
-              <FlourishChart
-                visualisationId="29154705"
-                type="chart"
-                title="2018, pico de producción"
-                description="Producción caficultora de Brasil a través del tiempo."
-                height={680}
+            <FlourishStory
+                storyId="3727006"
+                steps={[
+                  {
+                    slide: 1,
+                    hide: true,
+                    content: (
+                      <>
+                      </>
+                    ),
+                  },
+                  {
+                    slide: 2,
+                    content: (
+                      <>
+                        <h3 className="font-display text-2xl font-medium text-center">
+                        Producción en 2018:
+                        3900 miles de toneladas
+                        </h3>
+                        <p className="mt-2 text-muted leading-relaxed">
+Brasil alcanzó una cosecha récord gracias al clima favorable y al ciclo de alta producción del café arábica.
+                        </p>
+                      </>
+                    ),
+                  }
+                ]}
               />
-            </div>
           </div>
 
           <div className="mt-8">

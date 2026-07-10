@@ -31,7 +31,7 @@ function CafetoCircleReveal({
     >
       <motion.img
         src="/cafeto.jpg"
-        alt="Coffea arabica plant"
+        alt="Café arabica plant"
         className="absolute inset-0 h-full w-full origin-center object-cover object-center will-change-transform"
         style={{ scale: imageScale }}
       />
@@ -92,7 +92,7 @@ const Cafeto = forwardRef<HTMLElement>(function Cafeto(_, ref) {
       ref={setSectionRef}
       className="relative w-full"
       style={{ height: reduced ? "100vh" : `${CAFETO_SCROLL_VH * 100}vh` }}
-      aria-label="Coffea arabica"
+      aria-label="Café arabica"
     >
       <div className="sticky top-0 h-screen w-full overflow-hidden bg-background">
         <CafetoCircleReveal
@@ -106,7 +106,7 @@ const Cafeto = forwardRef<HTMLElement>(function Cafeto(_, ref) {
             style={{ opacity: contentOpacity, y: contentY }}
           >
             <h2 className="font-display text-7xl font-semibold italic tracking-tight text-hero-foreground">
-              Coffea arabica
+              Café arábica
             </h2>
 
             <p className="mt-6 max-w-3xl font-body text-lg font-normal leading-relaxed text-hero-foreground">
