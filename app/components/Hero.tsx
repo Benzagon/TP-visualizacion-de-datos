@@ -61,17 +61,29 @@ function HeroSplitCircle({
   circleClipPath: ReturnType<typeof useHeroScroll>["circleClipPath"];
   imageScale: ReturnType<typeof useHeroScroll>["imageScale"];
 }) {
+  const halfBase =
+    "h-full w-1/2 bg-cover bg-center bg-no-repeat will-change-transform";
+
   return (
     <motion.div
       className="absolute inset-0 z-[1] will-change-[clip-path]"
       style={{ clipPath: circleClipPath }}
     >
-      {/* herobg.png fills the clipped circle, revealed as the user scrolls */}
+      {/* Split background: coffee on the left, mate on the right */}
       <motion.div
-        className="absolute inset-0 origin-center bg-cover bg-center bg-no-repeat will-change-transform"
-        style={{ backgroundImage: "url('/herobg.png')", scale: imageScale }}
+        className="absolute inset-0 flex origin-center will-change-transform"
+        style={{ scale: imageScale }}
         aria-hidden
-      />
+      >
+        <div
+          className={halfBase}
+          style={{ backgroundImage: "url('/hero/CoffeeHalf.jpg')" }}
+        />
+        <div
+          className={halfBase}
+          style={{ backgroundImage: "url('/hero/MateHalf.png')" }}
+        />
+      </motion.div>
 
       {/* Subtle dark vignette so the title stays legible over any image */}
       <div

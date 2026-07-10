@@ -21,7 +21,7 @@ const MATE_SCENES: MateScene[] = [
     id: "calabaza",
     eyebrow: "1",
     title: "Mate de calabaza",
-    image: "/tipos_de_mate/mate_calabazo.jpg",
+    image: "/tipos_de_mate/mateCalabaza.jpg",
     alt: "Mate tradicional de calabaza con bombilla",
     body: "El recipiente clasico conserva una relacion viva con la yerba: se cura, absorbe matices y gana caracter con cada ronda. Es el mate que convierte la costumbre en ritual.",
   },
