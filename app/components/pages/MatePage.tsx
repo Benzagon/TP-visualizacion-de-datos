@@ -8,6 +8,7 @@ import ComoPrepararMate from '../ComoPrepararMate'
 import { MapaMate } from '../Mapas'
 import Ilex from '../Ilex'
 import Plantation from '../Plantation'
+import TiposYerba from '../TiposYerba'
 
 const MatePage = () => {
   return (
@@ -21,6 +22,7 @@ const MatePage = () => {
         <MateSection />
         <ParalaxSeparator title="Para mates, colores" image="/tipos_mate.jpg" highlightedWord='colores'/>
         <TiposDeMate />
+        <TiposYerba />
         <ParalaxSeparator title="El consumo" image="/mate_consumo.jpg" highlightedWord='consumo'/>
         <MasTomanMate />
         <MapaMate />
