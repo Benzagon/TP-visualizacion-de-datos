@@ -39,7 +39,8 @@ Brasil y Colombiay concentran la producción de Café. Brasil lidera con 75.08 m
             </div>
           </div>
 
-          <div className="mt-8">
+          <div className="mt-8 grid gap-4">
+            <Title>El crecimiento no para</Title>
             <FlourishStory
                 storyId="3727006"
                 steps={[
@@ -122,7 +123,8 @@ Argentina, Brasil y Paraguay concentran la producción mundial de yerba mate. Ar
               />
             </div>
           </div>
-          <div className="max-w-7xl mx-auto px-6 md:px-10 py-20">
+          <div className="max-w-7xl mx-auto px-6 md:px-10 py-20 grid gap-4">
+            <Title>Boom en la producción de mate</Title>
             <div className="mt-8">
               <FlourishStory
                 storyId="3713871"

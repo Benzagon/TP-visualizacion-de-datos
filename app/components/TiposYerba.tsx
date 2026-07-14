@@ -6,7 +6,7 @@ export default function TiposYerba() {
         <section className="w-full bg-background">
             <div className="max-w-7xl mx-12 px-6 flex justify-center items-center">
                 <div className="mt-8 md:mt-8 max-w-5xl grid gap-4">
-                    <Title>Tipos de yerba y su distribución</Title>
+                    <Title>La yerba y sus matices</Title>
                     <FlourishStory
                         storyId="3729590"
                         steps={[

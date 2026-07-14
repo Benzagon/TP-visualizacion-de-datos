@@ -20,7 +20,7 @@ const CafePage = () => {
         <ProduccionCafe />
         <ParalaxSeparator title="La anatomía de un café" image="/anatomiaCafe.png" highlightedWord='anatomía'/>
         <CafeSection></CafeSection>
-        <ParalaxSeparator title="El sabor del grano" image="/tipos_cafetera.jpg" />
+        <ParalaxSeparator title="El grano y sus matices" image="/granos.jpg" />
         <TiposGranos />
         <ParalaxSeparator title="El consumo" image="/cafe_consumo.jpg" highlightedWord='consumo'/>
         <MasTomanCafe />
