@@ -420,7 +420,7 @@ export default function PreciosCafe() {
       `}</style>
 
       <section className="pc-view" aria-labelledby="precios-cafe-titulo">
-        <Title>¿Dónde conviene comprar cada café?</Title>
+        <Title>Donde conviene comprar café</Title>
         <p className="pc-intro">Comparativa de precios de café molido (250 g) — pasá el cursor sobre un paquete para ver precios</p>
 
         <div className="pc-shelf-unit">

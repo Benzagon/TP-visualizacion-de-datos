@@ -430,7 +430,7 @@ export default function PreciosMate() {
       `}</style>
 
       <section className="pm-view" aria-labelledby="precios-yerba-titulo">
-        <Title>¿Dónde conviene comprar cada yerba?</Title>
+        <Title>Donde conviene comprar yerba</Title>
         <p className="pm-intro">Comparativa de precios de yerba mate (500 g) — pasá el cursor sobre un paquete para ver precios</p>
 
         <div className="pm-shelf-unit">
