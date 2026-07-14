@@ -1,4 +1,3 @@
-import FlourishChart from "./FlourishChart";
 import FlourishStory from "./FlourishStory";
 import Title from "./Title";
 
@@ -7,7 +6,8 @@ function MapaMate() {
     <section className="w-full bg-background pt-8">
       <div className="mx-auto px-6 md:px-10 mb-8">
         <div className="mt-16 md:mt-20 grid grid-cols-1 gap-12 lg:gap-16">
-          <div className="w-full min-w-0">
+          <div className="w-full min-w-0 grid gap-4">
+            <Title>Consumo de mate en Sudamérica</Title>
             <FlourishStory
               storyId="3726948"
               steps={[
@@ -53,7 +53,8 @@ function MapaCafe() {
     <section className="w-full bg-background pt-8">
       <div className="mx-auto px-6 md:px-10 mb-8">
         <div className="mt-16 md:mt-20 grid grid-cols-1 gap-12 lg:gap-16">
-          <div className="w-full min-w-0">
+          <div className="w-full min-w-0 grid gap-4">
+            <Title>Consumo de café en Sudamérica</Title>
             <FlourishStory
               storyId="3727020"
               steps={[

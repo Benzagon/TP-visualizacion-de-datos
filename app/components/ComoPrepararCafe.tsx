@@ -730,7 +730,39 @@ export default function ComoPrepararCafe() {
       className="w-full border-t border-border bg-background"
       aria-labelledby="como-preparar-cafe-title"
     >
-      <div className="flex w-full flex-row">
+      <div       className="flex flex-row w-full">
+        {/* Sticky stage */}
+        <div className="sticky top-0 hidden h-screen w-1/2 shrink-0 items-center justify-center self-start overflow-hidden p-16 md:flex">
+          <div className="relative flex h-[76vh] w-full max-w-md flex-col items-center justify-center overflow-hidden rounded-2xl bg-surface shadow-lg">
+            <div className="absolute left-6 top-6 z-10 flex items-center gap-2 font-body text-xs tracking-[0.35em] uppercase text-muted">
+              <span className="font-display text-sm font-semibold text-foreground">
+                {String(activeStep + 1).padStart(2, "0")}
+              </span>
+              <span>{STEPS[activeStep].tag}</span>
+            </div>
+
+            <div className="h-[55%] w-[55%]">
+              <CoffeeSvg activeStep={activeStep} />
+            </div>
+
+            <div
+              className="absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 gap-2"
+              aria-hidden="true"
+            >
+              {STEPS.map((_, index) => (
+                <div
+                  key={index}
+                  className={`h-2 w-2 rounded-full transition-all duration-400 ${
+                    activeStep === index
+                      ? "scale-125 bg-accent-brown"
+                      : "bg-border"
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+
         {/* Scrolling text */}
         <div className="w-full md:w-1/2">
           <div className="px-6 pt-24 md:hidden">
@@ -766,38 +798,6 @@ export default function ComoPrepararCafe() {
               }}
             />
           ))}
-        </div>
-
-        {/* Sticky stage */}
-        <div className="sticky top-0 hidden h-screen w-1/2 shrink-0 items-center justify-center self-start overflow-hidden p-16 md:flex">
-          <div className="relative flex h-[76vh] w-full max-w-md flex-col items-center justify-center overflow-hidden rounded-2xl bg-surface shadow-lg">
-            <div className="absolute left-6 top-6 z-10 flex items-center gap-2 font-body text-xs tracking-[0.35em] uppercase text-muted">
-              <span className="font-display text-sm font-semibold text-foreground">
-                {String(activeStep + 1).padStart(2, "0")}
-              </span>
-              <span>{STEPS[activeStep].tag}</span>
-            </div>
-
-            <div className="h-[55%] w-[55%]">
-              <CoffeeSvg activeStep={activeStep} />
-            </div>
-
-            <div
-              className="absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 gap-2"
-              aria-hidden="true"
-            >
-              {STEPS.map((_, index) => (
-                <div
-                  key={index}
-                  className={`h-2 w-2 rounded-full transition-all duration-400 ${
-                    activeStep === index
-                      ? "scale-125 bg-accent-brown"
-                      : "bg-border"
-                  }`}
-                />
-              ))}
-            </div>
-          </div>
         </div>
       </div>
 
