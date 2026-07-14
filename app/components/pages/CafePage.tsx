@@ -8,6 +8,7 @@ import ComoPrepararCafe from '../ComoPrepararCafe'
 import { MapaCafe } from '../Mapas'
 import Cafeto from '../Cafeto'
 import PlantationCafe from '../PlantationCafe'
+import TiposGranos from '../TiposGranos'
 
 const CafePage = () => {
   return (
@@ -17,10 +18,10 @@ const CafePage = () => {
         <PlantationCafe />
         <ParalaxSeparator title="Brasil, la tierra del cafetero" image="/cafePlantation.jpg" highlightedWord='cafetero' />
         <ProduccionCafe />
-        {/* <ParalaxSeparator title="Los tipos de cafetera" image="/tipos_cafetera.jpg" />
-        <TiposDeCafetera /> */}
         <ParalaxSeparator title="La anatomía de un café" image="/anatomiaCafe.png" highlightedWord='anatomía'/>
         <CafeSection></CafeSection>
+        <ParalaxSeparator title="El sabor del grano" image="/tipos_cafetera.jpg" />
+        <TiposGranos />
         <ParalaxSeparator title="El consumo" image="/cafe_consumo.jpg" highlightedWord='consumo'/>
         <MasTomanCafe />
         <MapaCafe />
