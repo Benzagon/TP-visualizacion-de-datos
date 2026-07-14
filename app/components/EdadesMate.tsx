@@ -223,7 +223,7 @@ export default function EdadesMate() {
               viewport={{ once: true, margin: "-10% 0px" }}
               transition={easeOutTransition(tokens, "base")}
             >
-              ¿Cuántos termos de mate se consumen por día según la edad?
+              Cantidad de termos de mate consumidos por edad
             </motion.h2>
 
             <motion.div

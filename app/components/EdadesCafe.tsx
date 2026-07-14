@@ -203,7 +203,7 @@ export default function EdadesCafe() {
               viewport={{ once: true, margin: "-10% 0px" }}
               transition={easeOutTransition(tokens, "base")}
             >
-              ¿Cuántas tazas de café se consumen por día según la edad?
+              Cantidad de tazas consumidas por edad
             </motion.h2>
 
             <motion.div
