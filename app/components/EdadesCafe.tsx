@@ -107,6 +107,27 @@ function buildTazaSvg(id: string, fillFraction: number): string {
 
 function Taza({ id, fillFraction }: { id: string; fillFraction: number }) {
   const liquidRef = useRef<SVGRectElement | null>(null);
+  const fillFractionRef = useRef(fillFraction);
+
+  useEffect(() => {
+    fillFractionRef.current = fillFraction;
+  }, [fillFraction]);
+
+  useEffect(() => {
+    const el = liquidRef.current;
+    if (!el) return;
+
+    const liquidH = Math.max(
+      0,
+      Math.min(INNER_H, Math.round(INNER_H * fillFractionRef.current))
+    );
+    const liquidY = INNER_BOT_Y - liquidH;
+
+    el.style.transition =
+      "y 1.1s cubic-bezier(0.22, 1, 0.36, 1), height 1.1s cubic-bezier(0.22, 1, 0.36, 1)";
+    el.setAttribute("y", String(liquidY));
+    el.setAttribute("height", String(liquidH));
+  }, []);
 
   useEffect(() => {
     const el = liquidRef.current;
@@ -126,7 +147,7 @@ function Taza({ id, fillFraction }: { id: string; fillFraction: number }) {
 
   return (
     <div
-      dangerouslySetInnerHTML={{ __html: buildTazaSvg(id, 0) }}
+      dangerouslySetInnerHTML={{ __html: buildTazaSvg(id, fillFraction) }}
       ref={(node) => {
         if (node) {
           liquidRef.current = node.querySelector(
