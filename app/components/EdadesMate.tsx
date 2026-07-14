@@ -13,100 +13,120 @@ import { useMotionTokens } from "../hooks/useMotionTokens";
 import { easeOutTransition } from "../lib/motion";
 
 const DATA = [
-  { age: "Menores de 18", value: 1.25 },
-  { age: "18 a 24 años", value: 1.54 },
-  { age: "25 a 34 años", value: 1.69 },
-  { age: "35 a 44 años", value: 1.86 },
-  { age: "45 a 54 años", value: 2.0 },
-  { age: "Más de 54 años", value: 2.2 },
+  { age: "15 a 24 años", value: 2.0 },
+  { age: "25 a 34 años", value: 1.68 },
+  { age: "35 a 44 años", value: 2.08 },
+  { age: "45 a 54 años", value: 1.93 },
+  { age: "Más de 54 años", value: 2.38 },
 ];
 
-const INNER_BOT_Y = 80;
-const INNER_H = 60;
-const LIQ_X = 16;
-const LIQ_W = 62;
+const INNER_X = 10;
+const INNER_Y = 56;
+const INNER_W = 60;
+const INNER_H = 111;
 
-function parseTazas(value: number): number[] {
+function parseTermos(value: number): number[] {
   const full = Math.floor(value);
   const partial = Math.round((value - full) * 100) / 100;
-  const tazas: number[] = [];
-  for (let i = 0; i < full; i++) tazas.push(1.0);
-  if (partial > 0.001) tazas.push(partial);
-  return tazas;
+  const termos: number[] = [];
+  for (let i = 0; i < full; i++) termos.push(1.0);
+  if (partial > 0.001) termos.push(partial);
+  return termos;
 }
 
 function formatText(value: number): string {
   if (value === Math.floor(value)) {
-    return `${value.toFixed(0)} tazas de café por día`;
+    return `${value.toFixed(0)} termos por día`;
   }
-  return `${value.toFixed(2)} tazas de café por día`;
+  return `${value.toFixed(2)} termos por día`;
 }
 
-function buildTazaSvg(id: string, fillFraction: number): string {
-  const liquidH = Math.max(0, Math.min(INNER_H, Math.round(INNER_H * fillFraction)));
-  const liquidY = INNER_BOT_Y - liquidH;
+function buildTermoSvg(id: string, fillFraction: number): string {
+  const liquidH = Math.max(
+    0,
+    Math.min(INNER_H, Math.round(INNER_H * fillFraction))
+  );
+  const liquidY = INNER_Y + INNER_H - liquidH;
 
   const bodyPath = `
-    M 14,14
-    L 80,14
-    L 73,84
-    L 21,84
+    M 14,38
+    Q 8,38 8,55
+    L 8,168
+    Q 8,176 16,176
+    L 64,176
+    Q 72,176 72,168
+    L 72,55
+    Q 72,38 66,38
     Z
   `;
 
-  const clipInner = `
-    M ${LIQ_X},20
-    L ${LIQ_X + LIQ_W},20
-    L ${LIQ_X + LIQ_W - 6},${INNER_BOT_Y}
-    L ${LIQ_X + 6},${INNER_BOT_Y}
-    Z
-  `;
-
-  const asaPath = `
-    M 80,30
-    C 108,30 108,66 80,66
-    L 80,58
-    C 100,58 100,38 80,38
-    Z
-  `;
-
-  const platilloPath = `
-    M 10,86
-    Q 10,92 47,92
-    Q 84,92 84,86
-    L 79,84
-    L 15,84
+  const clipPath = `
+    M 10,56
+    L 10,167
+    Q 10,174 16,174
+    L 64,174
+    Q 70,174 70,167
+    L 70,56
     Z
   `;
 
   return `
-<svg class="taza-svg" viewBox="0 0 110 96" width="100" height="87" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<svg class="termo-svg" viewBox="0 0 80 180" width="72" height="162" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <defs>
     <clipPath id="clip-${id}">
-      <path d="${clipInner}"/>
+      <path d="${clipPath}"/>
     </clipPath>
   </defs>
 
-  <path d="${platilloPath}" fill="#f0f0ec" stroke="#1a1a1a" stroke-width="2" stroke-linejoin="round"/>
   <path d="${bodyPath}" fill="#fff" stroke="none"/>
+
   <rect
     class="liquid-fill"
     id="liq-${id}"
-    x="${LIQ_X}"
+    x="${INNER_X}"
     y="${liquidY}"
-    width="${LIQ_W}"
+    width="${INNER_W}"
     height="${liquidH}"
-    fill="#6F4E37"
+    fill="#29493D"
     clip-path="url(#clip-${id})"
   />
+
   <path d="${bodyPath}" fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-linejoin="round"/>
-  <line x1="16" y1="20" x2="78" y2="20" stroke="#1a1a1a" stroke-width="1.8" opacity="0.4"/>
-  <path d="${asaPath}" fill="#f0f0ec" stroke="#1a1a1a" stroke-width="2.2" stroke-linejoin="round"/>
+
+  <line x1="8" y1="38" x2="72" y2="38" stroke="#1a1a1a" stroke-width="2.5"/>
+
+  <rect x="14" y="4" width="52" height="34" rx="0" fill="#f0f0ec" stroke="none"/>
+  <rect x="14" y="4" width="52" height="34" rx="0" fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-linejoin="round"/>
+
+  <rect x="18" y="0" width="44" height="6" rx="2" fill="#1a1a1a"/>
+
+  <line x1="14" y1="26" x2="66" y2="26" stroke="#1a1a1a" stroke-width="1.2" opacity="0.35"/>
 </svg>`;
 }
 
-function Taza({ id, fillFraction }: { id: string; fillFraction: number }) {
+function Termo({ id, fillFraction }: { id: string; fillFraction: number }) {
   const liquidRef = useRef<SVGRectElement | null>(null);
+  const fillFractionRef = useRef(fillFraction);
+
+  useEffect(() => {
+    fillFractionRef.current = fillFraction;
+  }, [fillFraction]);
+
+  useEffect(() => {
+    const el = liquidRef.current;
+    if (!el) return;
+
+    const liquidH = Math.max(
+      0,
+      Math.min(INNER_H, Math.round(INNER_H * fillFractionRef.current))
+    );
+    const liquidY = INNER_Y + INNER_H - liquidH;
+
+    el.style.transition =
+      "y 1.1s cubic-bezier(0.22, 1, 0.36, 1), height 1.1s cubic-bezier(0.22, 1, 0.36, 1)";
+    el.setAttribute("y", String(liquidY));
+    el.setAttribute("height", String(liquidH));
+  }, []);
 
   useEffect(() => {
     const el = liquidRef.current;
@@ -116,7 +136,7 @@ function Taza({ id, fillFraction }: { id: string; fillFraction: number }) {
       0,
       Math.min(INNER_H, Math.round(INNER_H * fillFraction))
     );
-    const liquidY = INNER_BOT_Y - liquidH;
+    const liquidY = INNER_Y + INNER_H - liquidH;
 
     el.style.transition =
       "y 1.1s cubic-bezier(0.22, 1, 0.36, 1), height 1.1s cubic-bezier(0.22, 1, 0.36, 1)";
@@ -126,7 +146,7 @@ function Taza({ id, fillFraction }: { id: string; fillFraction: number }) {
 
   return (
     <div
-      dangerouslySetInnerHTML={{ __html: buildTazaSvg(id, 0) }}
+      dangerouslySetInnerHTML={{ __html: buildTermoSvg(id, fillFraction) }}
       ref={(node) => {
         if (node) {
           liquidRef.current = node.querySelector(
@@ -138,7 +158,7 @@ function Taza({ id, fillFraction }: { id: string; fillFraction: number }) {
   );
 }
 
-export default function EdadesCafe() {
+export default function EdadesMate() {
   const reduced = useReducedMotion();
   const tokens = useMotionTokens();
   const containerRef = useRef<HTMLDivElement>(null);
@@ -146,7 +166,7 @@ export default function EdadesCafe() {
   const rafRef = useRef<number | null>(null);
 
   const current = DATA[currentIndex];
-  const fractions = useMemo(() => parseTazas(current.value), [current.value]);
+  const fractions = useMemo(() => parseTermos(current.value), [current.value]);
 
   const updateIndex = useCallback(() => {
     const container = containerRef.current;
@@ -203,7 +223,7 @@ export default function EdadesCafe() {
               viewport={{ once: true, margin: "-10% 0px" }}
               transition={easeOutTransition(tokens, "base")}
             >
-              ¿Cuántas tazas de café se consumen por día según la edad?
+              ¿Cuántos termos de mate se consumen por día según la edad?
             </motion.h2>
 
             <motion.div
@@ -217,20 +237,20 @@ export default function EdadesCafe() {
               }
               className="text-center mt-2"
             >
-              <h3 className="font-medium text-3xl font-bold tracking-tight leading-none text-black mt-8">
+              <h3 className="font-medium text-3xl font-bold tracking-tight leading-none text-black">
                 {current.age}
               </h3>
             </motion.div>
 
             <div
-              className="flex flex-wrap justify-center items-end mt-0 mb-4"
+              className="flex flex-wrap justify-center items-end mt-6 mb-4"
               style={{
                 gap: "clamp(10px, 2vw, 24px)",
                 minHeight: "180px",
               }}
             >
               {fractions.map((f, i) => (
-                <Taza key={`${currentIndex}-${i}`} id={`${currentIndex}-${i}`} fillFraction={f} />
+                <Termo key={`${currentIndex}-${i}`} id={`${currentIndex}-${i}`} fillFraction={f} />
               ))}
             </div>
 
@@ -261,7 +281,7 @@ export default function EdadesCafe() {
                   key={index}
                   className={`h-2 w-2 rounded-full transition-all duration-500 ${
                     currentIndex === index
-                      ? "scale-125 bg-accent-brown"
+                      ? "scale-125 bg-accent"
                       : "bg-white"
                   }`}
                 />
