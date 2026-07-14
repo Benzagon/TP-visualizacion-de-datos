@@ -9,6 +9,7 @@ import { MapaCafe } from '../Mapas'
 import Cafeto from '../Cafeto'
 import PlantationCafe from '../PlantationCafe'
 import TiposGranos from '../TiposGranos'
+import EdadesCafe from '../EdadesCafe'
 
 const CafePage = () => {
   return (
@@ -25,6 +26,7 @@ const CafePage = () => {
         <ParalaxSeparator title="El consumo" image="/cafe_consumo.jpg" highlightedWord='consumo'/>
         <MasTomanCafe />
         <MapaCafe />
+        <EdadesCafe />
         <ParalaxSeparator title="El arte del cafe filtrado" image="/cafe_consumo.jpg" highlightedWord='filtrado' />
         <ComoPrepararCafe />
     </>
