@@ -638,7 +638,7 @@ export default function ComoPrepararMate() {
               <span>{STEPS[activeStep].tag}</span>
             </div>
 
-            <div className="h-[55%] w-[55%]">
+            <div className="h-[80%] w-[80%]">
               <MateSvg activeStep={activeStep} />
             </div>
 
