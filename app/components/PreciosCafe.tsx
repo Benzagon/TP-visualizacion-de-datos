@@ -3,23 +3,26 @@
 import { useEffect, useMemo, useRef, useState, useCallback } from "react";
 import Title from "./Title";
 
+type CoffeeType = "Café Arábica" | "Café Robusta" | "Café Libérica";
+
 interface Marca {
   nombre: string;
   precios: Record<string, number>;
+  tipo: CoffeeType;
   minPrice: number;
   bestSuper: string;
 }
 
-const RAW_MARCAS: { nombre: string; precios: Record<string, number> }[] = [
-  { nombre: "Morenita", precios: { Coto: 6800, ChangoMás: 5999, "Mariano Max": 6220, "La Anónima": 5450, Vea: 5800, Jumbo: 5950, Disco: 6000 } },
-  { nombre: "La Virginia", precios: { Coto: 6500, ChangoMás: 6200, "Mariano Max": 6000, "La Anónima": 6350, Vea: 6100, Jumbo: 6300, Disco: 6250 } },
-  { nombre: "Arlistán", precios: { Coto: 6100, ChangoMás: 6200, "Mariano Max": 6150, "La Anónima": 6250, Vea: 6550, Jumbo: 6550, Disco: 6550 } },
-  { nombre: "Cabrales", precios: { Coto: 8400, ChangoMás: 8655, "Mariano Max": 7990, "La Anónima": 8600, Vea: 8500, Jumbo: 8650, Disco: 8150 } },
-  { nombre: "Dolca", precios: { Coto: 9396, ChangoMás: 9400, "Mariano Max": 8999, "La Anónima": 8950, Vea: 9000, Jumbo: 9450, Disco: 9050 } },
-  { nombre: "Nescafé", precios: { Coto: 9211, ChangoMás: 10100, "Mariano Max": 9650, "La Anónima": 9710, Vea: 10100, Jumbo: 10220, Disco: 9500 } },
-  { nombre: "Starbucks", precios: { Coto: 11100, ChangoMás: 10720, "Mariano Max": 10499, "La Anónima": 10750, Vea: 11300, Jumbo: 10900, Disco: 11099 } },
-  { nombre: "Bonafide", precios: { Coto: 13100, ChangoMás: 13650, "Mariano Max": 13460, "La Anónima": 13800, Vea: 13600, Jumbo: 13900, Disco: 14050 } },
-  { nombre: "Martínez Café", precios: { Coto: 18999, ChangoMás: 18200, "Mariano Max": 19100, "La Anónima": 18720, Vea: 18825, Jumbo: 18999, Disco: 19220 } },
+const RAW_MARCAS: { nombre: string; precios: Record<string, number>; tipo: CoffeeType }[] = [
+  { nombre: "Morenita", precios: { Coto: 6800, ChangoMás: 5999, "Mariano Max": 6220, "La Anónima": 5450, Vea: 5800, Jumbo: 5950, Disco: 6000 }, tipo: "Café Arábica" },
+  { nombre: "La Virginia", precios: { Coto: 6500, ChangoMás: 6200, "Mariano Max": 6000, "La Anónima": 6350, Vea: 6100, Jumbo: 6300, Disco: 6250 }, tipo: "Café Arábica" },
+  { nombre: "Arlistán", precios: { Coto: 6100, ChangoMás: 6200, "Mariano Max": 6150, "La Anónima": 6250, Vea: 6550, Jumbo: 6550, Disco: 6550 }, tipo: "Café Robusta" },
+  { nombre: "Cabrales", precios: { Coto: 8400, ChangoMás: 8655, "Mariano Max": 7990, "La Anónima": 8600, Vea: 8500, Jumbo: 8650, Disco: 8150 }, tipo: "Café Arábica" },
+  { nombre: "Dolca", precios: { Coto: 9396, ChangoMás: 9400, "Mariano Max": 8999, "La Anónima": 8950, Vea: 9000, Jumbo: 9450, Disco: 9050 }, tipo: "Café Arábica" },
+  { nombre: "Nescafé", precios: { Coto: 9211, ChangoMás: 10100, "Mariano Max": 9650, "La Anónima": 9710, Vea: 10100, Jumbo: 10220, Disco: 9500 }, tipo: "Café Robusta" },
+  { nombre: "Starbucks", precios: { Coto: 11100, ChangoMás: 10720, "Mariano Max": 10499, "La Anónima": 10750, Vea: 11300, Jumbo: 10900, Disco: 11099 }, tipo: "Café Arábica" },
+  { nombre: "Bonafide", precios: { Coto: 13100, ChangoMás: 13650, "Mariano Max": 13460, "La Anónima": 13800, Vea: 13600, Jumbo: 13900, Disco: 14050 }, tipo: "Café Libérica" },
+  { nombre: "Martínez Café", precios: { Coto: 18999, ChangoMás: 18200, "Mariano Max": 19100, "La Anónima": 18720, Vea: 18825, Jumbo: 18999, Disco: 19220 }, tipo: "Café Arábica" },
 ];
 
 const MARCAS: Marca[] = RAW_MARCAS
@@ -109,6 +112,7 @@ function TooltipContent({ marca }: { marca: Marca }) {
         </div>
         <div className="pc-tooltip-brand">{marca.nombre}</div>
       </div>
+      <span className="pc-tooltip-meta">{marca.tipo}</span>
       <p className="pc-tooltip-msg">
         El precio más bajo se encuentra en<strong> {marca.bestSuper}</strong>.
       </p>
@@ -351,6 +355,16 @@ export default function PreciosCafe() {
           font-weight: 700;
           color: ${BROWN_DARK};
           line-height: 1;
+        }
+        .pc-tooltip-meta {
+          font-size: 0.72rem;
+          color: ${BROWN_DARK};
+          background: #F2E8DD;
+          border-radius: 999px;
+          padding: 2px 8px;
+          display: inline-block;
+          margin-bottom: 8px;
+          font-weight: 600;
         }
         .pc-tooltip-msg {
           font-size: 0.78rem;
